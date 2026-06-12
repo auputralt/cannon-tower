@@ -20,15 +20,21 @@ Open [cannon-tower-defense.html](cannon-tower-defense.html) in any modern browse
 
 ## 🕹️ How to Play
 
-1. **Choose a map** — Meadow Run, Dusty Dunes, or Frostpeak Pass
+1. **Conquer the maps in order** — Meadow Run → Dusty Dunes → Frostpeak Pass → Ember Wastes → Twilight Marsh → Obsidian Citadel. Clear a map to unlock the next!
 2. **Tap a pad** (◯) and choose a tower to place:
    - 💣 **Cannon** — splash damage, slow fire rate
-   - 🏹 **Ballista** — rapid fire, single target
+   - 🏹 **Archer** — rapid fire, single target
    - ❄️ **Frost** — slows enemies in range
-3. **Tap a placed tower** to upgrade its power or sell it back
+   - 🎯 **Musket** *(Map 2+)* — long-range sniper, shreds tanks
+   - ⚡ **Tesla** *(Map 3+)* — chain lightning that arcs between foes
+   - 🐉 **Dragon** *(Map 4+)* — splash fireballs that keep burning
+   - 💥 **Mortar** *(Map 5+)* — massive long-range siege blasts
+   - 🔮 **Prism** *(Map 6)* — rapid-fire laser beams
+3. **Tap a placed tower** to upgrade it up to **Lv 4** or sell it back
 4. **Start each wave** and defend your keep from incoming enemies
 5. **Earn gold** by defeating enemies — spend it on more towers
-6. **Survive all waves** across 3 maps to conquer Cannon Keep!
+6. **Quit anytime** — your run auto-saves every wave and every build, continue right where you left off
+7. **Survive all waves** across 6 maps and chase ★★★ ratings to conquer Cannon Keep!
 
 ---
 
@@ -36,13 +42,14 @@ Open [cannon-tower-defense.html](cannon-tower-defense.html) in any modern browse
 
 | Feature | Details |
 |---------|---------|
-| 🎯 **3 Tower Types** | Cannon (splash), Ballista (rapid), Frost (slow) |
-| 🗺️ **3 Maps** | Meadow Run · Dusty Dunes · Frostpeak Pass |
-| 👾 **4 Enemy Types** | Scouts, Runners, Tanks, Bosses — each with unique stats |
-| ⬆️ **Tower Upgrades** | 2 upgrade levels per tower for more power |
+| 🎯 **8 Tower Types** | Cannon, Archer, Frost, Musket, Tesla, Dragon, Mortar, Prism — advanced towers unlock on higher maps |
+| 🗺️ **6 Maps** | Meadow Run · Dusty Dunes · Frostpeak Pass · Ember Wastes · Twilight Marsh · Obsidian Citadel — clear each to unlock the next |
+| 👾 **12 Enemy Types** | Scouts, Runners, Armored, Healers, Tanks, Regenerators, Splitters, Knights, Shamans, Phantoms — plus Bosses and the Warlord |
+| ⬆️ **Tower Upgrades** | 3 upgrade levels per tower (up to Lv 4) for more power |
 | 💰 **Economy System** | Earn gold, strategically build and sell towers |
 | ⚡ **Speed Control** | 1× / 2× game speed toggle |
-| 🏆 **Star Ratings** | Earn stars based on performance |
+| 🏆 **Star Ratings** | Earn up to ★★★ per map based on lives kept |
+| 💾 **Auto-Save** | Runs are checkpointed every wave, build, upgrade, and sell — quit and continue later |
 | 📱 **Mobile-Friendly** | Touch controls, responsive layout |
 | 🔇 **Sound Effects** | Procedural audio for shots, hits, and builds |
 | 🌐 **Works Offline** | Zero dependencies, single HTML file |
