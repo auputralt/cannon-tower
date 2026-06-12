@@ -4,7 +4,8 @@ A self-contained, browser-based tower defense game built entirely in a single HT
 
 ## 🎮 Play Now
 
-**Live demo:** [Play Cannon Keep](https://mrputra.github.io/cannon-tower/)
+**Live demo:** [Play Cannon Keep](https://calm-sunflower-dd6421.netlify.app)
+**GitHub:** [auputralt/cannon-tower](https://github.com/auputralt/cannon-tower)
 
 Just open `cannon-tower-defense.html` in any modern browser — it works offline too.
 
