@@ -169,6 +169,7 @@ ul.how b{color:var(--gold)}
 .level-card .meta{flex:1;display:flex;flex-direction:column;gap:2px}
 .level-card .lname{font-size:17px;font-weight:800}
 .level-card .ldesc{font-size:12px;color:var(--dim);font-weight:700}
+.level-card .hint{font-size:11px;color:#ffd97a;font-weight:800;line-height:1.25}
 .level-card .stars{color:var(--gold);font-size:13px;letter-spacing:2px}
 .level-card .badge{font-size:11px;font-weight:800;color:var(--green)}
 .endrow{display:flex;flex-direction:column;gap:9px}
@@ -243,7 +244,7 @@ ul.how b{color:var(--gold)}
     <ul class="how">
       <li><b>Tap a pad ◯</b> and choose from <b>8 towers</b> — Cannon, Archer, Frost, sniping <b>Musket</b>, chaining <b>Tesla</b>, burning <b>Dragon</b>, siege <b>Mortar</b> &amp; the <b>Prism</b> laser.</li>
       <li><b>Tap a tower</b> to upgrade it up to <b>Lv 4</b> or sell it back.</li>
-      <li>Conquer <b>6 maps in order</b> — clear a map to unlock the next. New towers &amp; enemies appear as you go!</li>
+      <li>Conquer <b>10 maps in order</b> — each map gives a hint for the cleanest <b>3-star</b> route. New towers &amp; enemies appear as you go!</li>
       <li>Your game <b>auto-saves</b> after every wave and build, so you can always continue where you left off.</li>
     </ul>
     <button class="big" id="contBtn" style="display:none">⟳ Continue</button>
@@ -313,7 +314,7 @@ const TOWER_TYPES={
 };
 const SELL_PCT=0.7;
 const LEVELS=[
- {name:'Meadow Run',desc:'10 waves · gentle start',stars:1,gold:130,lives:15,hpBase:1,hpRamp:.13,deco:'tree',
+ {name:'Meadow Run',desc:'10 waves · gentle start',hint:'Best 3-star weapon: Cannon',stars:1,gold:130,lives:15,hpBase:1,hpRamp:.13,deco:'tree',
   pal:{g1:'#7ec850',g2:'#76bf49',pf:'#e7b876',pe:'#b98c4f',dash:'rgba(246,217,160,.8)',pad:'#cfc3a0',padE:'#a89a72'},
   path:[[-40,80],[400,80],[400,220],[80,220],[80,360],[400,360],[400,500],[80,500],[80,690]],
   spots:[[120,150],[240,150],[348,150],[136,290],[248,290],[360,290],[120,430],[240,430],[348,430],[200,570],[320,570]],
@@ -329,7 +330,7 @@ const LEVELS=[
    [['b',18,0.45],['t',5,1.2]],
    [['x',1,0],['t',6,1.2],['f',10,0.4]],
   ]},
- {name:'Dusty Dunes',desc:'12 waves · twisting trail',stars:2,gold:150,lives:13,hpBase:1.1,hpRamp:.16,deco:'cactus',
+ {name:'Dusty Dunes',desc:'12 waves · twisting trail',hint:'Best 3-star weapon: Archer',stars:2,gold:150,lives:13,hpBase:1.1,hpRamp:.16,deco:'cactus',
   pal:{g1:'#d8c27a',g2:'#cfb86e',pf:'#c98850',pe:'#96603a',dash:'rgba(240,205,160,.85)',pad:'#efe1b0',padE:'#b3a06e'},
   path:[[240,-40],[240,140],[80,140],[80,520],[240,520],[240,300],[400,300],[400,690]],
   spots:[[100,60],[330,80],[160,200],[310,225],[160,330],[310,390],[160,460],[310,560],[448,440],[90,600]],
@@ -347,7 +348,7 @@ const LEVELS=[
    [['t',8,1.1],['h',3,1.5],['f',8,0.45]],
    [['x',1,0],['s',6,1.0],['h',2,1.8],['f',10,0.38]],
   ]},
- {name:'Frostpeak Pass',desc:'13 waves · the long siege',stars:3,gold:170,lives:12,hpBase:1.3,hpRamp:.19,deco:'pine',
+ {name:'Frostpeak Pass',desc:'13 waves · the long siege',hint:'Best 3-star weapon: Frost',stars:3,gold:170,lives:12,hpBase:1.3,hpRamp:.19,deco:'pine',
   pal:{g1:'#cfe3ec',g2:'#c2d9e4',pf:'#b0906b',pe:'#7e6448',dash:'rgba(238,222,200,.85)',pad:'#e9f2f6',padE:'#93b2c2'},
   path:[[-40,60],[400,60],[400,180],[80,180],[80,300],[400,300],[400,420],[80,420],[80,540],[400,540],[400,690]],
   spots:[[140,120],[260,120],[220,240],[340,240],[140,360],[260,360],[220,480],[340,480]],
@@ -366,7 +367,7 @@ const LEVELS=[
    [['f',20,0.32],['h',4,1.4],['s',6,1.0]],
    [['x',3,5],['r',5,1.2],['h',3,1.5]],
   ]},
- {name:'Ember Wastes',desc:'14 waves · veterans only',stars:3,gold:190,lives:10,hpBase:1.5,hpRamp:.22,deco:'ember',
+ {name:'Ember Wastes',desc:'14 waves · veterans only',hint:'Best 3-star weapon: Musket',stars:3,gold:190,lives:10,hpBase:1.5,hpRamp:.22,deco:'ember',
   pal:{g1:'#a05c40',g2:'#965237',pf:'#52414c',pe:'#352a33',dash:'rgba(255,160,90,.7)',pad:'#d8b59a',padE:'#8a5f4a'},
   path:[[-40,580],[400,580],[400,80],[80,80],[80,460],[300,460],[300,200],[180,200],[180,690]],
   spots:[[130,520],[340,520],[448,330],[140,140],[240,140],[340,140],[130,300],[240,300],[350,330],[240,520]],
@@ -386,7 +387,7 @@ const LEVELS=[
    [['g',5,1.6],['f',20,0.3],['k',4,1.3],['h',4,1.2]],
    [['x',4,4.5],['g',4,1.6],['h',5,1.1]],
   ]},
- {name:'Twilight Marsh',desc:'15 waves · the haunted bog',stars:3,gold:210,lives:10,hpBase:1.75,hpRamp:.24,deco:'swamp',
+ {name:'Twilight Marsh',desc:'15 waves · the haunted bog',hint:'Best 3-star weapon: Tesla',stars:3,gold:210,lives:10,hpBase:1.75,hpRamp:.24,deco:'swamp',
   pal:{g1:'#4f7d68',g2:'#477260',pf:'#8a6f5a',pe:'#5d4a3c',dash:'rgba(206,232,200,.75)',pad:'#b8c9a8',padE:'#7d9070'},
   path:[[160,-40],[160,160],[400,160],[400,320],[80,320],[80,480],[320,480],[320,690]],
   spots:[[90,80],[240,90],[330,240],[230,240],[90,240],[160,400],[250,400],[400,440],[400,560],[240,560],[90,580]],
@@ -407,7 +408,7 @@ const LEVELS=[
    [['f',24,0.28],['v',8,0.85],['h',4,1.2]],
    [['x',3,4.5],['k',6,1.0],['a',3,1.4]],
   ]},
- {name:'Obsidian Citadel',desc:'16 waves · the final stand',stars:3,gold:230,lives:10,hpBase:2.0,hpRamp:.27,deco:'crystal',
+ {name:'Obsidian Citadel',desc:'16 waves · the final stand',hint:'Best 3-star weapon: Dragon',stars:3,gold:230,lives:10,hpBase:2.0,hpRamp:.27,deco:'crystal',
   pal:{g1:'#3d3a4f',g2:'#363347',pf:'#5d4a63',pe:'#3a2c40',dash:'rgba(255,170,110,.7)',pad:'#9a8fae',padE:'#665a7a'},
   path:[[-40,560],[160,560],[160,80],[400,80],[400,300],[240,300],[240,690]],
   spots:[[80,140],[240,160],[320,160],[80,300],[320,240],[320,360],[80,480],[320,540],[160,640],[448,440]],
@@ -428,6 +429,104 @@ const LEVELS=[
    [['x',3,4],['v',8,0.8]],
    [['t',12,0.8],['h',5,1.0],['a',4,1.2],['s',8,0.75]],
    [['z',2,9],['x',2,6],['a',4,1.2],['h',4,1.1]],
+  ]},
+ {name:'Sunken Harbor',desc:'17 waves · tide-swept lanes',hint:'Best 3-star weapon: Mortar',stars:3,gold:250,lives:10,hpBase:2.2,hpRamp:.29,deco:'swamp',
+  pal:{g1:'#3e657b',g2:'#35596c',pf:'#7c634f',pe:'#4e4037',dash:'rgba(214,235,255,.7)',pad:'#b8d0da',padE:'#7a95a0'},
+  path:[[-40,120],[110,120],[110,460],[320,460],[320,240],[400,240],[400,690]],
+  spots:[[68,70],[210,82],[350,82],[78,210],[210,250],[350,300],[78,380],[210,420],[350,520],[220,590],[438,180]],
+  waves:[
+   [['b',16,0.45]],
+   [['f',16,0.35],['k',4,1.0]],
+   [['s',8,0.8],['b',10,0.5]],
+   [['a',3,1.4],['h',3,1.5]],
+   [['v',8,0.9],['f',12,0.34]],
+   [['r',6,1.0],['k',6,0.9]],
+   [['g',5,1.3],['s',8,0.75]],
+   [['x',2,5],['a',4,1.2]],
+   [['f',24,0.28],['h',4,1.2]],
+   [['z',1,0],['r',5,1.0],['k',6,0.9]],
+   [['t',10,0.9],['v',8,0.8]],
+   [['x',2,4],['g',6,1.2],['a',4,1.1]],
+   [['b',30,0.25],['h',5,1.0]],
+   [['z',2,7],['x',2,5],['r',6,0.95]],
+   [['a',5,1.0],['k',8,0.8],['v',10,0.75]],
+   [['x',3,4],['z',2,6],['g',6,1.0],['h',4,1.0]],
+   [['x',4,3.5],['z',2,5.5],['r',8,0.8]],
+  ]},
+ {name:'Aurora Spire',desc:'18 waves · sky-bastion siege',hint:'Best 3-star weapon: Prism',stars:3,gold:275,lives:10,hpBase:2.45,hpRamp:.31,deco:'crystal',
+  pal:{g1:'#45607d',g2:'#394c68',pf:'#826f92',pe:'#4e4462',dash:'rgba(255,230,255,.72)',pad:'#b9b3da',padE:'#756c96'},
+  path:[[240,-40],[240,120],[80,120],[80,280],[400,280],[400,440],[160,440],[160,620],[400,620],[400,690]],
+  spots:[[92,70],[182,70],[308,70],[386,162],[96,186],[196,220],[324,220],[96,350],[224,350],[350,350],[96,520],[230,520],[340,520]],
+  waves:[
+   [['b',16,0.42]],
+   [['f',18,0.32],['s',6,0.75]],
+   [['k',8,0.8],['a',4,1.0]],
+   [['v',8,0.75],['h',4,1.0]],
+   [['r',7,0.95],['g',5,1.2]],
+   [['x',2,4.5],['t',10,0.85]],
+   [['z',2,6],['s',10,0.7]],
+   [['a',5,0.95],['v',10,0.7]],
+   [['x',3,4],['g',6,1.0],['h',5,0.95]],
+   [['z',2,5.5],['r',7,0.9]],
+   [['b',28,0.22],['f',20,0.28]],
+   [['k',10,0.75],['a',5,0.9],['v',8,0.68]],
+   [['x',3,4],['z',2,5],['g',6,0.95],['h',4,0.95]],
+   [['z',3,5],['x',3,4],['r',8,0.85]],
+   [['a',6,0.85],['k',8,0.75],['v',10,0.65],['s',8,0.65]],
+   [['x',4,3.5],['z',2,4.8],['g',8,0.9]],
+   [['x',4,3.2],['z',2,4.5],['r',8,0.8],['h',5,0.9]],
+   [['z',3,4.5],['x',4,3.2],['a',5,0.9],['v',10,0.6]],
+  ]},
+ {name:'Eclipse Throne',desc:'19 waves · the true last stand',hint:'Best 3-star weapon: Prism + Tesla',stars:3,gold:300,lives:10,hpBase:2.7,hpRamp:.34,deco:'crystal',
+  pal:{g1:'#2e3558',g2:'#242a45',pf:'#67516f',pe:'#3a2c40',dash:'rgba(255,220,190,.72)',pad:'#9f98c0',padE:'#655d83'},
+  path:[[-40,520],[140,520],[140,120],[360,120],[360,300],[220,300],[220,460],[400,460],[400,690]],
+  spots:[[78,150],[220,150],[330,150],[78,250],[310,250],[78,380],[210,380],[340,380],[122,610],[300,610],[438,520]],
+  waves:[
+   [['b',18,0.38]],
+   [['f',20,0.28],['k',6,0.72]],
+   [['s',10,0.68],['v',6,0.72]],
+   [['a',6,0.85],['h',5,0.95]],
+   [['r',8,0.88],['g',6,1.0]],
+   [['z',2,5.5],['x',3,3.8]],
+   [['t',12,0.78],['s',10,0.62]],
+   [['k',10,0.68],['a',6,0.82],['v',8,0.62]],
+   [['x',4,3.2],['g',8,0.88],['h',5,0.88]],
+   [['z',3,4.5],['r',8,0.82]],
+   [['b',34,0.2],['f',22,0.25]],
+   [['k',12,0.64],['a',7,0.78],['v',10,0.58]],
+   [['x',4,3],['z',3,4.3],['g',8,0.84],['h',5,0.84]],
+   [['z',4,4.2],['x',4,3],['r',9,0.78]],
+   [['a',7,0.78],['k',10,0.62],['v',12,0.55],['s',10,0.58]],
+   [['x',5,2.8],['z',4,3.8],['g',8,0.8]],
+   [['z',4,4],['x',5,2.8],['r',9,0.75],['h',6,0.8]],
+   [['z',5,3.8],['x',5,2.8],['a',7,0.74],['v',12,0.52]],
+   [['z',6,3.5],['x',6,2.6],['r',10,0.7],['k',12,0.58]],
+  ]},
+ {name:'Aurega Citadel',desc:'20 waves · the final cosmic clash',hint:'Best 3-star weapon: Prism + Mortar',stars:3,gold:350,lives:10,hpBase:3.0,hpRamp:.38,deco:'moon',
+  pal:{g1:'#1d1830',g2:'#120e20',pf:'#7c5a92',pe:'#4b325c',dash:'rgba(255,215,0,.75)',pad:'#e5c1f5',padE:'#805a9c'},
+  path:[[240,-40],[240,100],[400,100],[400,540],[80,540],[80,200],[320,200],[320,420],[160,420],[160,300],[240,300],[240,690]],
+  spots:[[120,260],[120,360],[200,360],[280,250],[360,150],[360,250],[360,350],[300,150],[120,480],[200,480],[280,480],[180,600],[300,600]],
+  waves:[
+   [['b',20,0.35]],
+   [['f',24,0.25],['k',8,0.65]],
+   [['s',12,0.6],['v',8,0.65]],
+   [['a',7,0.8],['h',6,0.9]],
+   [['r',10,0.8],['g',8,0.9]],
+   [['z',2,5.0],['x',3,3.5]],
+   [['t',14,0.7],['s',12,0.55]],
+   [['k',12,0.6],['a',8,0.75],['v',10,0.55]],
+   [['x',4,3.0],['g',10,0.8],['h',6,0.8]],
+   [['z',3,4.0],['r',10,0.75]],
+   [['b',40,0.18],['f',26,0.22]],
+   [['k',14,0.58],['a',8,0.7],['v',12,0.5]],
+   [['x',5,2.8],['z',4,4.0],['g',10,0.78],['h',6,0.78]],
+   [['z',5,3.8],['x',5,2.8],['r',10,0.72]],
+   [['a',8,0.72],['k',12,0.58],['v',14,0.48],['s',12,0.52]],
+   [['x',6,2.5],['z',5,3.5],['g',10,0.75]],
+   [['z',5,3.5],['x',6,2.5],['r',10,0.7],['h',8,0.75]],
+   [['z',6,3.2],['x',6,2.5],['a',8,0.68],['v',14,0.45]],
+   [['z',7,3.0],['x',7,2.2],['r',12,0.65],['k',14,0.52]],
+   [['z',10,2.5],['x',10,2.0],['g',16,0.5]],
   ]},
 ];
 const el=id=>document.getElementById(id);
@@ -896,7 +995,7 @@ function refreshDock(){
   const tip=el('tip');
   tip.classList.toggle('show',!sel&&G.state==='play');
   if(!sel&&G.state==='play'){
-    tip.innerHTML=G.inWave?'Defend! Tap a pad ◯ to build mid-wave':wavePreview();
+    tip.innerHTML=G.inWave?`Defend! Tap a pad ◯ to build mid-wave`:`<span class="g">Hint:</span> ${G.level.hint}${wavePreview()?` · ${wavePreview()}`:''}`;
     el('startBtn').textContent='▶ Start Wave '+(G.waveIdx+1);
   }
   if(hasTower){
@@ -985,11 +1084,13 @@ function renderLevels(){
       b.disabled=true;
       b.innerHTML=`<span class="thumb" style="background:linear-gradient(135deg,${lv.pal.g1},${lv.pal.pf});display:flex;align-items:center;justify-content:center;font-size:20px">🔒</span>
         <span class="meta"><span class="lname">Map ${i+1} · ${lv.name}</span>
-        <span class="ldesc">Clear “${LEVELS[i-1].name}” to unlock</span></span>`;
+        <span class="ldesc">Clear “${LEVELS[i-1].name}” to unlock</span>
+        <span class="hint">${lv.hint}</span></span>`;
     }else{
       b.innerHTML=`<span class="thumb" style="background:linear-gradient(135deg,${lv.pal.g1},${lv.pal.pf})"></span>
         <span class="meta"><span class="lname">${lv.name}</span>
-        <span class="ldesc">${lv.desc}</span></span>
+        <span class="ldesc">${lv.desc}</span>
+        <span class="hint">${lv.hint}</span></span>
         <span class="meta" style="flex:none;align-items:flex-end">
         <span class="stars">${'★'.repeat(earned)}<span style="opacity:.35">${'★'.repeat(3-earned)}</span></span>
         ${G.cleared.includes(i)?'<span class="badge">✓ CLEARED</span>':''}</span>`;
@@ -1199,6 +1300,24 @@ function drawDeco(c,type,x,y,rnd){
       c.fillStyle='#8a6fc0';
       c.beginPath(); c.moveTo(7,0); c.lineTo(10,5); c.lineTo(5,7); c.closePath(); c.fill();
       break;
+    case'forge':
+      c.fillStyle='#7a5a46'; rr(c,-9,-4,18,8,4); c.fill();
+      c.fillStyle='#c86a45'; c.beginPath(); c.arc(0,0,5,0,7); c.fill();
+      c.fillStyle='rgba(255,210,120,.8)'; c.beginPath(); c.arc(0,0,2.2,0,7); c.fill();
+      c.fillStyle='#4a362d'; rr(c,-2,-14,4,10,2); c.fill();
+      break;
+    case'storm':
+      c.fillStyle='rgba(32,56,88,.6)'; c.beginPath(); c.arc(0,0,9,0,7); c.fill();
+      c.strokeStyle='rgba(240,250,255,.9)'; c.lineWidth=1.8; c.lineCap='round';
+      c.beginPath(); c.moveTo(-2,-12); c.lineTo(-6,-2); c.lineTo(1,-2); c.lineTo(-4,8); c.stroke();
+      c.fillStyle='#85c6ff'; c.beginPath(); c.arc(5,5,2,0,7); c.fill();
+      break;
+    case'moon':
+      c.fillStyle='#d8ddf3'; c.beginPath(); c.arc(0,0,9,0,7); c.fill();
+      c.fillStyle='#33405d'; c.beginPath(); c.arc(-3,-2,2,0,7); c.fill();
+      c.beginPath(); c.arc(3,3,1.5,0,7); c.fill();
+      c.fillStyle='rgba(255,255,255,.8)'; c.beginPath(); c.arc(6,-5,2,0,7); c.fill();
+      break;
   }
   c.restore();
 }
@@ -1349,41 +1468,51 @@ function drawEnemy(e){
 function drawTower(t){
   const col=t.spec.color;
   ctx.save(); ctx.translate(t.x,t.y);
+  ctx.shadowColor=col; ctx.shadowBlur=14;
+  ctx.fillStyle='rgba(0,0,0,.25)'; ctx.beginPath(); ctx.ellipse(0,11,20,8,0,0,7); ctx.fill();
   ctx.fillStyle='#2c3850'; ctx.beginPath(); ctx.arc(0,1.5,16,0,7); ctx.fill();
   ctx.fillStyle='#4a5a7d'; ctx.beginPath(); ctx.arc(0,0,15,0,7); ctx.fill();
   ctx.fillStyle=col; ctx.beginPath(); ctx.arc(0,0,11,0,7); ctx.fill();
+  ctx.strokeStyle='rgba(255,255,255,.12)'; ctx.lineWidth=1.5; ctx.beginPath(); ctx.arc(0,0,11,0,7); ctx.stroke();
+  ctx.shadowBlur=0;
   ctx.rotate(t.angle);
   if(t.type==='bolt'){
     ctx.strokeStyle='#8a5a1c'; ctx.lineWidth=3;
     ctx.beginPath(); ctx.arc(10,0,9,-2,2); ctx.stroke();
     ctx.fillStyle='#222b3f'; rr(ctx,-4,-2.5,26,5,2.5); ctx.fill();
+    ctx.fillStyle='#f0c26d'; ctx.beginPath(); ctx.arc(17,0,2.2,0,7); ctx.fill();
   }else if(t.type==='frost'){
     ctx.fillStyle='#222b3f'; rr(ctx,-4,-4.5,20,9,4); ctx.fill();
     ctx.fillStyle='#bdf0ff';
     ctx.save(); ctx.translate(17,0); ctx.rotate(Math.PI/4);
     rr(ctx,-5,-5,10,10,2); ctx.fill(); ctx.restore();
+    ctx.strokeStyle='rgba(190,245,255,.75)'; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(17,0,6,0,7); ctx.stroke();
   }else if(t.type==='musket'){
     ctx.fillStyle='#222b3f'; rr(ctx,-4,-2.5,32,5,2.5); ctx.fill();
     ctx.fillStyle='#5a432c'; rr(ctx,2,-4,9,8,2.5); ctx.fill();
     ctx.fillStyle='#39455f'; rr(ctx,24,-3.5,6,7,2); ctx.fill();
+    ctx.fillStyle='#f2e2c9'; rr(ctx,14,-2,4,4,1.5); ctx.fill();
   }else if(t.type==='tesla'){
     ctx.fillStyle='#222b3f'; rr(ctx,-4,-4,16,8,3); ctx.fill();
     ctx.fillStyle='#ffe97a'; ctx.beginPath(); ctx.arc(16,0,6.5,0,7); ctx.fill();
     ctx.strokeStyle='#b8960a'; ctx.lineWidth=2;
     ctx.beginPath(); ctx.arc(16,0,6.5,0,7); ctx.stroke();
     ctx.fillStyle='#fffbe0'; ctx.beginPath(); ctx.arc(16,0,2.5,0,7); ctx.fill();
+    ctx.strokeStyle='rgba(255,238,130,.35)'; ctx.lineWidth=4; ctx.beginPath(); ctx.arc(16,0,11,0,7); ctx.stroke();
   }else if(t.type==='dragon'){
     ctx.fillStyle='#5e1f10'; rr(ctx,-4,-6,24,12,5); ctx.fill();
     ctx.fillStyle='#ff9d4d'; ctx.beginPath(); ctx.arc(20,0,4.5,0,7); ctx.fill();
     ctx.fillStyle='#7a2e1a';
     ctx.beginPath(); ctx.moveTo(2,-6); ctx.lineTo(7,-12); ctx.lineTo(11,-6); ctx.closePath(); ctx.fill();
     ctx.beginPath(); ctx.moveTo(2,6); ctx.lineTo(7,12); ctx.lineTo(11,6); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle='rgba(255,150,70,.55)'; ctx.lineWidth=3; ctx.beginPath(); ctx.arc(10,0,12,0,7); ctx.stroke();
   }else if(t.type==='mortar'){
     ctx.fillStyle='#222b3f'; rr(ctx,-3,-8,17,16,6); ctx.fill();
     ctx.fillStyle='#39455f'; ctx.beginPath(); ctx.arc(16,0,7,0,7); ctx.fill();
     ctx.fillStyle='#1a2438'; ctx.beginPath(); ctx.arc(16,0,4,0,7); ctx.fill();
     ctx.strokeStyle='#5d6f4a'; ctx.lineWidth=2;
     ctx.beginPath(); ctx.arc(16,0,7,0,7); ctx.stroke();
+    ctx.fillStyle='#90a86a'; ctx.beginPath(); ctx.arc(13,-3,2.4,0,7); ctx.fill();
   }else if(t.type==='prism'){
     ctx.fillStyle='#222b3f'; rr(ctx,-4,-3.5,14,7,3); ctx.fill();
     ctx.save(); ctx.translate(15,0); ctx.rotate(Math.PI/4);
@@ -1391,6 +1520,7 @@ function drawTower(t){
     ctx.strokeStyle='#b8489e'; ctx.lineWidth=2; rr(ctx,-6,-6,12,12,2); ctx.stroke();
     ctx.fillStyle='#fff'; rr(ctx,-2.5,-2.5,5,5,1); ctx.fill();
     ctx.restore();
+    ctx.strokeStyle='rgba(255,209,245,.55)'; ctx.lineWidth=3.5; ctx.beginPath(); ctx.arc(15,0,10,0,7); ctx.stroke();
   }else{
     ctx.fillStyle='#222b3f'; rr(ctx,-4,-5.5,26,11,4.5); ctx.fill();
     ctx.fillStyle='#39455f'; rr(ctx,14,-6.5,8,13,3); ctx.fill();
