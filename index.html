@@ -1057,6 +1057,29 @@ el('againBtn').addEventListener('click',()=>{A.sfx('click');startLevel(G.li)});
 el('nextBtn').addEventListener('click',()=>{A.sfx('click');startLevel(Math.min(G.li+1,LEVELS.length-1))});
 el('levelsBtn').addEventListener('click',()=>{A.sfx('click');renderLevels();showScreen('levelScr')});
 
+/* ================= cheat code (type + Enter) ================= */
+let __cheatBuf = '';
+document.addEventListener('keydown', (ev) => {
+  // Enter checks the buffer
+  if (ev.key === 'Enter'){
+    if (__cheatBuf.toLowerCase() === 'aurega'){
+      G.gold += 1000;
+      toast('cheat active');
+      refreshDock();
+    }
+    __cheatBuf = '';
+    return;
+  }
+  // allow backspace to edit buffer
+  if (ev.key === 'Backspace'){
+    __cheatBuf = __cheatBuf.slice(0, -1);
+    return;
+  }
+  // accumulate printable characters
+  if (ev.key.length === 1) __cheatBuf += ev.key;
+  if (__cheatBuf.length > 32) __cheatBuf = __cheatBuf.slice(-32);
+});
+
 /* ================= rendering ================= */
 const bg=document.createElement('canvas');
 function rr(c,x,y,w,h,r){

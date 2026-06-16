@@ -7,7 +7,7 @@ redirects = []
 [functions."*"]
 
 [build]
-publish = "/Users/mrputra/Documents/Project/Finish Project/Canon Tower"
+publish = "/Users/mrputra/Documents/Project/Finish Project/CanonKeep/cannon-tower"
 publishOrigin = "default"
 
 [build.environment]
