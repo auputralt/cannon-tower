@@ -1390,6 +1390,7 @@ function saveRun(){
   if(G.state!=='play')return;
   try{localStorage.setItem(RUN_KEY,JSON.stringify({
     li:G.li,w:G.waveIdx,g:G.gold,l:G.lives,k:G.kills,
+    customSpots:G.spots.slice(G.level.spots.length).map(s=>[s.x,s.y]),
     t:G.towers.map(t=>({s:G.spots.indexOf(t.spot),y:t.type,v:t.lv,i:t.invested}))
   }))}catch(e){}
 }
@@ -1399,6 +1400,12 @@ function resumeRun(){
   const r=getRun(); if(!r||!LEVELS[r.li])return;
   startLevel(r.li);
   G.waveIdx=r.w; G.gold=r.g; G.lives=r.l; G.kills=r.k;
+  if(r.customSpots){
+    for(const p of r.customSpots){
+      G.spots.push({x:p[0],y:p[1],tower:null});
+    }
+    buildBG();
+  }
   for(const d of r.t||[]){
     const spot=G.spots[d.s];
     if(!spot||spot.tower||!TOWER_TYPES[d.y])continue;
@@ -1607,8 +1614,15 @@ cv.addEventListener('pointerdown',ev=>{
   if(G.state!=='play')return;
   const r=cv.getBoundingClientRect();
   const x=(ev.clientX-r.left)/r.width*LW, y=(ev.clientY-r.top)/r.height*LH;
-  let best=null,bd=40;
+  let best=null,bd=__cheatAuregaCool ? 25 : 40;
   for(const s of G.spots){const d=Math.hypot(s.x-x,s.y-y);if(d<bd){bd=d;best=s}}
+  if(!best && __cheatAuregaCool){
+    const newSpot = {x, y, tower:null};
+    G.spots.push(newSpot);
+    best = newSpot;
+    buildBG();
+    saveRun();
+  }
   if(best)A.sfx('click');
   select(best);
 });
@@ -1702,6 +1716,7 @@ document.querySelectorAll('.world-tab').forEach(tab=>{
 
 /* ================= cheat code (type + Enter) ================= */
 let __cheatBuf = '';
+let __cheatAuregaCool = false;
 document.addEventListener('keydown', (ev) => {
   // Enter checks the buffer
   if (ev.key === 'Enter'){
@@ -1709,6 +1724,9 @@ document.addEventListener('keydown', (ev) => {
       G.gold += 1000;
       toast('cheat active');
       refreshDock();
+    } else if (__cheatBuf.toLowerCase() === 'auregacool'){
+      __cheatAuregaCool = !__cheatAuregaCool;
+      toast(__cheatAuregaCool ? 'Auregacool: Tap anywhere to place new pads!' : 'Auregacool disabled');
     }
     __cheatBuf = '';
     return;
