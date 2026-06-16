@@ -307,8 +307,8 @@ ul.how b{color:var(--gold)}
     <h1>CANNON<br>KEEP</h1>
     <p class="sub">Tower Defense</p>
     <ul class="how">
-      <li><b>Tap a pad ◯</b> and choose from <b>8 towers</b> — Cannon, Archer, Frost, Musket, Tesla, Dragon, Mortar &amp; Prism.</li>
-      <li><b>Tap a tower</b> to upgrade to <b>Lv 4</b> or unlock <b>Evolved Specializations (Lv 5)</b> in World 2!</li>
+      <li><b>Tap a pad ◯</b> and choose from <b>9 towers</b> — Cannon, Archer, Frost, Musket, Tesla, Dragon, Mortar, Prism &amp; Aurega Zuka.</li>
+      <li><b>Tap a tower</b> to upgrade to <b>Lv 5</b> or unlock <b>Evolved Specializations (Lv 6)</b> in World 2!</li>
       <li>Conquer <b>30 maps across 3 Worlds</b> — each map offers custom hints and harder scaling.</li>
       <li>Your game <b>auto-saves</b> after every wave and build, so you can always continue where you left off.</li>
     </ul>
@@ -369,25 +369,27 @@ const E_TYPES={
   c:{r:28,hp:1900,sp:20,gold:150,lives:6,armor:18,split:'u',splitN:2,c1:'#3e4a5e',c2:'#1e2633'} // Colossus
 };
 const TOWER_TYPES={
-  cannon:{name:'Cannon',sub:'splash',cost:50,up:[45,75,120],splash:30,spd:340,color:'#5f739c',
-    lv:[{dmg:12,range:95,rate:1.1},{dmg:20,range:106,rate:1.3},{dmg:34,range:118,rate:1.55},{dmg:54,range:130,rate:1.8}]},
-  bolt:{name:'Archer',sub:'rapid',cost:40,up:[35,60,95],splash:0,spd:520,color:'#d98e2b',
-    lv:[{dmg:5,range:108,rate:2.6},{dmg:8,range:118,rate:3.1},{dmg:13,range:128,rate:3.6},{dmg:20,range:138,rate:4.2}]},
-  frost:{name:'Frost',sub:'slows',cost:45,up:[40,70,110],splash:0,spd:300,color:'#4ecbe8',
-    slow:[.35,.45,.55,.65],slowDur:1.6,
-    lv:[{dmg:4,range:90,rate:1.0},{dmg:6,range:98,rate:1.2},{dmg:9,range:106,rate:1.4},{dmg:13,range:114,rate:1.6}]},
-  musket:{name:'Musket',sub:'snipe',cost:70,up:[60,100,160],splash:0,spd:760,color:'#8d6b4a',unlock:1,
-    lv:[{dmg:34,range:150,rate:0.45},{dmg:56,range:165,rate:0.5},{dmg:90,range:180,rate:0.55},{dmg:145,range:195,rate:0.6}]},
-  tesla:{name:'Tesla',sub:'chain',cost:65,up:[55,90,145],splash:0,spd:600,color:'#e8d44e',unlock:2,
-    chain:[2,3,4,5],chainPct:0.6,chainR:75,
-    lv:[{dmg:9,range:100,rate:1.5},{dmg:14,range:110,rate:1.7},{dmg:22,range:120,rate:1.9},{dmg:34,range:130,rate:2.1}]},
-  dragon:{name:'Dragon',sub:'burn',cost:90,up:[80,130,200],splash:26,spd:380,color:'#e0563c',unlock:3,
-    burn:[6,11,18,30],burnDur:2.5,
-    lv:[{dmg:18,range:105,rate:0.9},{dmg:30,range:115,rate:1.0},{dmg:48,range:125,rate:1.1},{dmg:75,range:135,rate:1.2}]},
-  mortar:{name:'Mortar',sub:'siege',cost:85,up:[75,120,185],splash:55,spd:240,color:'#90a86a',unlock:4,
-    lv:[{dmg:32,range:135,rate:0.5},{dmg:52,range:148,rate:0.55},{dmg:80,range:160,rate:0.6},{dmg:120,range:172,rate:0.65}]},
-  prism:{name:'Prism',sub:'laser',cost:110,up:[95,150,220],splash:0,spd:980,color:'#e87ad8',unlock:5,
-    lv:[{dmg:15,range:125,rate:3.0},{dmg:22,range:135,rate:3.4},{dmg:32,range:145,rate:3.8},{dmg:46,range:155,rate:4.2}]},
+  cannon:{name:'Cannon',sub:'splash',cost:50,up:[45,75,120,180],splash:30,spd:340,color:'#5f739c',
+    lv:[{dmg:12,range:95,rate:1.1},{dmg:20,range:106,rate:1.3},{dmg:34,range:118,rate:1.55},{dmg:54,range:130,rate:1.8},{dmg:80,range:140,rate:2.0}]},
+  bolt:{name:'Archer',sub:'rapid',cost:40,up:[35,60,95,140],splash:0,spd:520,color:'#d98e2b',
+    lv:[{dmg:5,range:108,rate:2.6},{dmg:8,range:118,rate:3.1},{dmg:13,range:128,rate:3.6},{dmg:20,range:138,rate:4.2},{dmg:30,range:148,rate:4.8}]},
+  frost:{name:'Frost',sub:'slows',cost:45,up:[40,70,110,160],splash:0,spd:300,color:'#4ecbe8',
+    slow:[.35,.45,.55,.65,.75],slowDur:1.6,
+    lv:[{dmg:4,range:90,rate:1.0},{dmg:6,range:98,rate:1.2},{dmg:9,range:106,rate:1.4},{dmg:13,range:114,rate:1.6},{dmg:18,range:122,rate:1.8}]},
+  musket:{name:'Musket',sub:'snipe',cost:70,up:[60,100,160,240],splash:0,spd:760,color:'#8d6b4a',unlock:1,
+    lv:[{dmg:34,range:150,rate:0.45},{dmg:56,range:165,rate:0.5},{dmg:90,range:180,rate:0.55},{dmg:145,range:195,rate:0.6},{dmg:220,range:210,rate:0.65}]},
+  tesla:{name:'Tesla',sub:'chain',cost:65,up:[55,90,145,200],splash:0,spd:600,color:'#e8d44e',unlock:2,
+    chain:[2,3,4,5,6],chainPct:0.6,chainR:75,
+    lv:[{dmg:9,range:100,rate:1.5},{dmg:14,range:110,rate:1.7},{dmg:22,range:120,rate:1.9},{dmg:34,range:130,rate:2.1},{dmg:50,range:140,rate:2.3}]},
+  dragon:{name:'Dragon',sub:'burn',cost:90,up:[80,130,200,280],splash:26,spd:380,color:'#e0563c',unlock:3,
+    burn:[6,11,18,30,45],burnDur:2.5,
+    lv:[{dmg:18,range:105,rate:0.9},{dmg:30,range:115,rate:1.0},{dmg:48,range:125,rate:1.1},{dmg:75,range:135,rate:1.2},{dmg:110,range:145,rate:1.3}]},
+  mortar:{name:'Mortar',sub:'siege',cost:85,up:[75,120,185,260],splash:55,spd:240,color:'#90a86a',unlock:4,
+    lv:[{dmg:32,range:135,rate:0.5},{dmg:52,range:148,rate:0.55},{dmg:80,range:160,rate:0.6},{dmg:120,range:172,rate:0.65},{dmg:170,range:184,rate:0.7}]},
+  prism:{name:'Prism',sub:'laser',cost:110,up:[95,150,220,300],splash:0,spd:980,color:'#e87ad8',unlock:5,
+    lv:[{dmg:15,range:125,rate:3.0},{dmg:22,range:135,rate:3.4},{dmg:32,range:145,rate:3.8},{dmg:46,range:155,rate:4.2},{dmg:65,range:165,rate:4.6}]},
+  auregazoka:{name:'Aurega Zuka',sub:'hero',cost:1000,up:[800,1200,1800,2500],splash:65,spd:850,color:'#ffc94d',
+    lv:[{dmg:150,range:160,rate:2.0},{dmg:220,range:175,rate:2.2},{dmg:320,range:190,rate:2.4},{dmg:480,range:205,rate:2.6},{dmg:750,range:220,rate:2.8}]},
 };
 const TOWER_BRANCHES={
   cannon:{
@@ -421,6 +423,10 @@ const TOWER_BRANCHES={
   prism:{
     A:{name:'Refractor',desc:'Beam splits on hit, striking target & 4 nearby foes',cost:300,dmg:62,range:165,rate:4.5,split:4},
     B:{name:'Quantum Melter',desc:'Damage increases up to +400% when focusing same target',cost:320,dmg:35,range:175,rate:5.0,melt:true}
+  },
+  auregazoka:{
+    A:{name:'Aurega Overlord',desc:'Fires cosmic meteors that leave large burning starfire pools',cost:1500,dmg:1100,range:240,rate:3.2,lava:true,splash:80},
+    B:{name:'Void Obliterator',desc:'Fires black hole spheres creating a massive gravity zone',cost:1800,dmg:1600,range:250,rate:2.6,fallout:true,splash:90}
   }
 };
 const SELL_PCT=0.7;
@@ -818,6 +824,7 @@ const A={
       case'shoot_dragon':this.noise(S,.18,.14,520);this.tone(S,160,70,.16,'sawtooth',.1);break;
       case'shoot_mortar':this.tone(S,95,40,.18,'square',.18);this.noise(S,.1,.14,500);break;
       case'shoot_prism':this.tone(S,1500,2600,.08,'sine',.1);this.tone(S,750,1300,.06,'triangle',.06);break;
+      case'shoot_auregazoka':this.tone(S,1800,2800,.14,'sine',.1);this.tone(S,900,1400,.10,'sawtooth',.08);this.noise(S,.06,.15,1800);break;
       case'boom':this.noise(S,.16,.2,700);this.tone(S,170,50,.16,'sine',.18);break;
       case'hit':this.noise(S,.05,.1,1600);break;
       case'die':this.tone(S,880,0,.07,'square',.1);this.tone(S,1318,0,.1,'square',.1,.06);break;
@@ -1093,6 +1100,16 @@ class Projectile{
             hit++; if(hit>=4) break;
           }
         }
+      }
+    }else if(this.type==='auregazoka'){
+      A.sfx('boom');
+      g.rings.push({x:this.tx,y:this.ty,t:0,max:.32,r0:8,r1:50,c:'255,215,0'});
+      g.spark(this.tx,this.ty,'#ffc94d',8);
+      if(this.branch==='A'){ // Aurega Overlord
+        g.lavas.push({x:this.tx, y:this.ty, r:36, t:0, max:5.0, dmg:this.dmg, c1:'255, 215, 0', c2:'162, 128, 255'});
+      } else if(this.branch==='B'){ // Void Obliterator
+        g.shake = 8;
+        g.fallouts.push({x:this.tx, y:this.ty, r:65, t:0, max:4.0, dmg:this.dmg, c1:'80, 20, 160', c2:'162, 128, 255'});
       }
     }else{
       A.sfx('hit');
@@ -1391,7 +1408,7 @@ function saveRun(){
   try{localStorage.setItem(RUN_KEY,JSON.stringify({
     li:G.li,w:G.waveIdx,g:G.gold,l:G.lives,k:G.kills,
     customSpots:G.spots.slice(G.level.spots.length).map(s=>[s.x,s.y]),
-    t:G.towers.map(t=>({s:G.spots.indexOf(t.spot),y:t.type,v:t.lv,i:t.invested}))
+    t:G.towers.map(t=>({s:G.spots.indexOf(t.spot),y:t.type,v:t.lv,i:t.invested,b:t.branch}))
   }))}catch(e){}
 }
 function getRun(){try{return JSON.parse(localStorage.getItem(RUN_KEY))}catch(e){return null}}
@@ -1409,7 +1426,7 @@ function resumeRun(){
   for(const d of r.t||[]){
     const spot=G.spots[d.s];
     if(!spot||spot.tower||!TOWER_TYPES[d.y])continue;
-    const t=new Tower(spot,d.y); t.lv=d.v||0; t.invested=d.i||TOWER_TYPES[d.y].cost;
+    const t=new Tower(spot,d.y); t.lv=d.v||0; t.invested=d.i||TOWER_TYPES[d.y].cost; t.branch=d.b||null;
     spot.tower=t; G.towers.push(t);
   }
   refreshDock();
@@ -1463,8 +1480,8 @@ function refreshDock(){
       el('pinfo').textContent=`DMG ${s.dmg} · RNG ${s.range} · ${s.rate}/s` + (s.slow?` · ❄${Math.round(s.slow*100)}%`:'');
       el('upRow').style.display='none';
       el('specRow').style.display='none';
-    } else if(t.lv===3) {
-      el('pname').textContent=`${sp.name} · Lv 4`;
+    } else if(t.lv===sp.lv.length-1) {
+      el('pname').textContent=`${sp.name} · Lv ${t.lv+1}`;
       el('pinfo').textContent=`Choose Evolved Specialization`;
       el('upRow').style.display='none';
       el('specRow').style.display='flex';
@@ -1639,7 +1656,7 @@ el('specBtnA').addEventListener('click',()=>specialiseTower('A'));
 el('specBtnB').addEventListener('click',()=>specialiseTower('B'));
 
 function specialiseTower(branch){
-  const t=G.sel&&G.sel.tower; if(!t||t.lv!==3||t.branch)return;
+  const t=G.sel&&G.sel.tower; if(!t||t.lv!==t.spec.lv.length-1||t.branch)return;
   const spec = TOWER_BRANCHES[t.type][branch];
   if(G.gold<spec.cost){A.sfx('err');toast(`Need ●${spec.cost} gold`);return}
   G.gold-=spec.cost; t.invested+=spec.cost; t.branch=branch;
@@ -2233,6 +2250,23 @@ function drawTower(t){
       ctx.restore();
       ctx.strokeStyle='rgba(255,209,245,.55)'; ctx.lineWidth=3.5; ctx.beginPath(); ctx.arc(15,0,10,0,7); ctx.stroke();
     }
+  }else if(t.type==='auregazoka'){
+    if(t.branch==='A'){ // Aurega Overlord
+      ctx.fillStyle='#b87d12'; rr(ctx,-4,-8,28,16,6); ctx.fill();
+      ctx.fillStyle='#ffe97a'; rr(ctx,12,-10,18,20,5); ctx.fill();
+      ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(22,0,8,0,7); ctx.fill();
+      ctx.strokeStyle='rgba(255,201,77,.8)'; ctx.lineWidth=2.5; ctx.beginPath(); ctx.arc(22,0,12,0,7); ctx.stroke();
+    }else if(t.branch==='B'){ // Void Obliterator
+      ctx.fillStyle='#3a105c'; rr(ctx,-4,-8,28,16,6); ctx.fill();
+      ctx.fillStyle='#a280ff'; rr(ctx,12,-10,18,20,5); ctx.fill();
+      ctx.fillStyle='#000'; ctx.beginPath(); ctx.arc(22,0,8,0,7); ctx.fill();
+      ctx.strokeStyle='rgba(162,128,255,.8)'; ctx.lineWidth=2.5; ctx.beginPath(); ctx.arc(22,0,12,0,7); ctx.stroke();
+    }else{ // Standard
+      ctx.fillStyle='#222b3f'; rr(ctx,-4,-6.5,28,13,5); ctx.fill();
+      ctx.fillStyle='#ffc94d'; rr(ctx,14,-8.5,10,17,4); ctx.fill();
+      ctx.fillStyle='#a280ff'; ctx.beginPath(); ctx.arc(18,0,5.5,0,7); ctx.fill();
+      ctx.strokeStyle='rgba(255,255,255,.45)'; ctx.lineWidth=2.5; ctx.beginPath(); ctx.arc(18,0,8,0,7); ctx.stroke();
+    }
   }else{
     if(t.branch==='A'){
       ctx.fillStyle='#ffe97a'; ctx.beginPath(); ctx.arc(8,-4,2.5,0,7); ctx.arc(8,0,2.5,0,7); ctx.arc(8,4,2.5,0,7); ctx.fill();
@@ -2317,17 +2351,21 @@ function draw(){
   // Lava pools
   for(const l of G.lavas){
     const k = 1 - l.t/l.max;
-    ctx.fillStyle = 'rgba(255, 90, 0, 0.4)';
+    const c1 = l.c1 || '255, 90, 0';
+    const c2 = l.c2 || '255, 160, 0';
+    ctx.fillStyle = `rgba(${c1}, 0.4)`;
     ctx.beginPath(); ctx.arc(l.x, l.y, l.r, 0, 7); ctx.fill();
-    ctx.fillStyle = `rgba(255, 160, 0, ${k*0.8})`;
+    ctx.fillStyle = `rgba(${c2}, ${k*0.8})`;
     ctx.beginPath(); ctx.arc(l.x, l.y, l.r * 0.6 + Math.sin(G.time * 8 + l.x) * 3, 0, 7); ctx.fill();
   }
   // Toxic fallouts
   for(const f of G.fallouts){
     const k = 1 - f.t/f.max;
-    ctx.fillStyle = `rgba(100, 220, 80, ${k*0.25})`;
+    const c1 = f.c1 || '100, 220, 80';
+    const c2 = f.c2 || '140, 240, 100';
+    ctx.fillStyle = `rgba(${c1}, ${k*0.25})`;
     ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, 7); ctx.fill();
-    ctx.fillStyle = `rgba(140, 240, 100, ${k*0.4})`;
+    ctx.fillStyle = `rgba(${c2}, ${k*0.4})`;
     ctx.beginPath(); ctx.arc(f.x, f.y, f.r * 0.5 + Math.sin(G.time * 6 + f.x) * 4, 0, 7); ctx.fill();
   }
 
@@ -2370,6 +2408,10 @@ function draw(){
       ctx.moveTo(p.x-Math.cos(p.ang)*8,p.y-Math.sin(p.ang)*8);
       ctx.lineTo(p.x+Math.cos(p.ang)*5,p.y+Math.sin(p.ang)*5);
       ctx.stroke();
+    }else if(p.type==='auregazoka'){
+      ctx.fillStyle='rgba(162,128,255,.45)'; ctx.beginPath(); ctx.arc(p.x,p.y,12,0,7); ctx.fill();
+      ctx.fillStyle='#ffd76a'; ctx.beginPath(); ctx.arc(p.x,p.y,6,0,7); ctx.fill();
+      ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(p.x,p.y,3,0,7); ctx.fill();
     }else{
       ctx.fillStyle='#262d3d'; ctx.beginPath(); ctx.arc(p.x,p.y,4.5,0,7); ctx.fill();
     }
