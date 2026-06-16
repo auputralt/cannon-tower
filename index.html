@@ -255,7 +255,7 @@ ul.how b{color:var(--gold)}
 <div id="app">
   <header id="hud">
     <div class="chip" id="chipLives"><span class="ic">♥</span><b id="lives">15</b></div>
-    <div class="chip"><span class="coin"></span><b id="gold">130</b></div>
+    <div class="chip" id="chipGold"><span class="coin"></span><b id="gold">130</b></div>
     <div class="chip"><span class="lbl">W</span><b id="wave">1/8</b></div>
     <div class="chip" id="chipFoes"><span class="ic">☠</span><b id="left">0</b></div>
     <div class="spacer"></div>
@@ -303,7 +303,7 @@ ul.how b{color:var(--gold)}
 
 <div class="screen show" id="titleScr">
   <div class="card">
-    <div class="cannon-art">💣🏰</div>
+    <div class="cannon-art" id="cannonArt">💣🏰</div>
     <h1>CANNON<br>KEEP</h1>
     <p class="sub">Tower Defense</p>
     <ul class="how">
@@ -545,99 +545,99 @@ const LEVELS=[
   ]},
 
  // WORLD 2 - Elemental Depths
- {name:'Magma Caverns',desc:'10 waves · boiling heat',hint:'Upgrade to Titan Cannons to stun giants',stars:2,gold:380,lives:12,hpBase:3.5,hpRamp:.40,deco:'ember',
+ {name:'Magma Caverns',desc:'10 waves · boiling heat',hint:'Upgrade to Titan Cannons to stun giants',stars:2,gold:380,lives:12,hpBase:2.4,hpRamp:.20,deco:'ember',
   pal:{g1:'#5c2a18',g2:'#401c10',pf:'#7a3f28',pe:'#240b02',dash:'rgba(255,100,50,.85)',pad:'#9a563c',padE:'#5c2a18'},
   path:[[-40,300],[160,300],[160,100],[320,100],[320,500],[100,500],[100,690]],
-  spots:[[80,200],[240,200],[400,200],[240,400],[400,400],[200,580]],
+  spots:[[80,200],[240,200],[400,200],[240,400],[400,400],[200,580],[80,360],[260,300],[380,300],[150,560],[40,580]],
   waves:[
    [['b',12,0.7]], [['f',12,0.5],['w',2,1.2]], [['s',8,1.0],['d',3,1.2]], [['w',6,1.0]],
    [['u',3,2.0],['b',10,0.6]], [['d',6,0.9],['w',4,0.8]], [['t',8,1.2],['r',4,1.4]],
    [['u',4,1.8],['w',6,0.8],['d',5,1.0]], [['k',8,0.9],['a',4,1.2]], [['c',1,0],['w',8,0.6],['d',6,0.8]]
   ]},
- {name:'Crystal Depths',desc:'11 waves · glowing veins',hint:'Tesla chains zaps multiple hidden entities',stars:2,gold:400,lives:10,hpBase:3.8,hpRamp:.42,deco:'crystal',
+ {name:'Crystal Depths',desc:'11 waves · glowing veins',hint:'Tesla chains zaps multiple hidden entities',stars:2,gold:400,lives:10,hpBase:2.6,hpRamp:.22,deco:'crystal',
   pal:{g1:'#202c40',g2:'#141c2c',pf:'#465d7a',pe:'#0e1520',dash:'rgba(100,200,255,.8)',pad:'#5e7da3',padE:'#202c40'},
   path:[[240,-40],[240,160],[80,160],[80,400],[400,400],[400,690]],
-  spots:[[150,80],[330,80],[160,260],[320,260],[160,480],[320,480]],
+  spots:[[150,80],[330,80],[160,260],[320,260],[160,480],[320,480],[240,220],[140,340],[300,340],[340,460],[450,520]],
   waves:[
    [['f',16,0.45]], [['b',15,0.6],['w',3,1.0]], [['s',10,0.8]], [['d',6,0.9],['f',10,0.5]],
    [['u',4,1.6],['w',6,0.7]], [['t',6,1.0],['r',5,1.1]], [['w',10,0.7],['d',8,0.8]],
    [['h',4,1.4],['a',3,1.6]], [['u',5,1.3],['s',8,0.7]], [['c',1,0],['w',10,0.6],['d',8,0.8]],
    [['c',2,5],['u',4,1.5],['r',6,1.0]]
   ]},
- {name:'Neon Sanctuary',desc:'11 waves · energy core',hint:'Prism specializations melt shielded sentries',stars:2,gold:420,lives:10,hpBase:4.2,hpRamp:.44,deco:'storm',
+ {name:'Neon Sanctuary',desc:'11 waves · energy core',hint:'Prism specializations melt shielded sentries',stars:2,gold:420,lives:10,hpBase:2.8,hpRamp:.24,deco:'storm',
   pal:{g1:'#1a1630',g2:'#100d20',pf:'#544680',pe:'#080610',dash:'rgba(230,100,255,.85)',pad:'#7665ab',padE:'#1a1630'},
   path:[[-40,100],[400,100],[400,300],[80,300],[80,500],[400,500],[400,690]],
-  spots:[[140,180],[260,180],[220,380],[340,380],[140,580],[260,580]],
+  spots:[[140,180],[260,180],[220,380],[340,380],[140,580],[260,580],[80,200],[320,240],[140,420],[260,420],[340,580]],
   waves:[
    [['b',18,0.5]], [['w',6,0.8],['f',10,0.4]], [['d',8,0.8]], [['u',3,1.8],['s',10,0.7]],
    [['t',8,1.0],['r',6,1.0]], [['w',8,0.6],['d',8,0.7]], [['a',5,1.0],['h',5,1.0]],
    [['u',5,1.2],['t',8,0.9]], [['c',2,4.5],['w',8,0.5]], [['c',2,4],['u',4,1.4],['d',10,0.6]],
    [['z',1,0],['c',2,5],['w',10,0.5]]
   ]},
- {name:'Toxic Sewers',desc:'12 waves · waste disposal',hint:'Nuke Mortar melts groups with poison residue',stars:2,gold:440,lives:10,hpBase:4.6,hpRamp:.46,deco:'swamp',
+ {name:'Toxic Sewers',desc:'12 waves · waste disposal',hint:'Nuke Mortar melts groups with poison residue',stars:2,gold:440,lives:10,hpBase:3.0,hpRamp:.26,deco:'swamp',
   pal:{g1:'#2e3b2b',g2:'#1e261c',pf:'#556b50',pe:'#0f140e',dash:'rgba(120,255,120,.8)',pad:'#75916f',padE:'#2e3b2b'},
   path:[[80,-40],[80,240],[400,240],[400,480],[80,480],[80,690]],
-  spots:[[200,120],[320,120],[240,340],[240,580],[360,580]],
+  spots:[[200,120],[320,120],[240,340],[240,580],[360,580],[140,180],[340,180],[140,300],[340,300],[140,420],[340,420]],
   waves:[
    [['b',20,0.4]], [['f',16,0.35],['w',4,0.9]], [['s',12,0.7]], [['d',8,0.8],['h',4,1.2]],
    [['u',4,1.5],['r',6,0.9]], [['t',10,0.8],['w',8,0.6]], [['v',10,0.7],['d',8,0.7]],
    [['c',2,4],['u',4,1.3]], [['a',6,0.9],['k',8,0.8]], [['c',2,3.5],['w',10,0.5]],
    [['z',1,0],['c',2,4],['r',8,0.8]], [['z',2,6],['u',5,1.2],['d',10,0.6]]
   ]},
- {name:'Stormwind Crest',desc:'12 waves · high elevation',hint:'Frost slows the fast flying Void Wyrms',stars:3,gold:460,lives:10,hpBase:5.0,hpRamp:.48,deco:'pine',
+ {name:'Stormwind Crest',desc:'12 waves · high elevation',hint:'Frost slows the fast flying Void Wyrms',stars:3,gold:460,lives:10,hpBase:3.2,hpRamp:.28,deco:'pine',
   pal:{g1:'#2b3c40',g2:'#1a2628',pf:'#4f6a70',pe:'#0f1618',dash:'rgba(180,240,255,.8)',pad:'#6f9199',padE:'#2b3c40'},
   path:[[-40,500],[360,500],[360,120],[80,120],[80,690]],
-  spots:[[200,400],[200,220],[440,310],[440,190]],
+  spots:[[200,400],[200,220],[440,310],[440,190],[140,180],[280,180],[140,440],[280,440],[140,560],[280,560]],
   waves:[
    [['b',20,0.35]], [['y',4,1.2],['f',12,0.35]], [['w',8,0.7],['d',6,0.8]], [['u',4,1.4],['s',10,0.6]],
    [['y',6,1.0],['t',8,0.8]], [['r',8,0.8],['h',5,1.0]], [['c',2,4.5],['w',8,0.5]],
    [['u',5,1.1],['d',8,0.6]], [['c',2,3.5],['y',6,0.8]], [['z',1,0],['c',2,3.8]],
    [['z',2,5],['u',4,1.2],['y',8,0.7]], [['z',2,4.5],['c',3,4],['w',10,0.45]]
   ]},
- {name:'Ancient Vault',desc:'13 waves · ancestral treasure',hint:'Lava Spitters burn armored colossus targets',stars:3,gold:480,lives:10,hpBase:5.4,hpRamp:.50,deco:'forge',
+ {name:'Ancient Vault',desc:'13 waves · ancestral treasure',hint:'Lava Spitters burn armored colossus targets',stars:3,gold:480,lives:10,hpBase:3.4,hpRamp:.30,deco:'forge',
   pal:{g1:'#473b30',g2:'#2d251e',pf:'#7a6654',pe:'#1b1612',dash:'rgba(240,210,150,.85)',pad:'#a18873',padE:'#473b30'},
   path:[[400,-40],[400,200],[160,200],[160,440],[400,440],[400,690]],
-  spots:[[260,100],[260,320],[80,320],[260,540]],
+  spots:[[260,100],[260,320],[80,320],[260,540],[330,140],[220,260],[100,380],[340,380],[340,500],[220,500]],
   waves:[
    [['b',22,0.32]], [['f',18,0.3],['w',6,0.8]], [['s',14,0.6]], [['d',10,0.7],['y',5,1.0]],
    [['u',4,1.3],['t',10,0.8]], [['r',8,0.7],['a',5,1.0]], [['c',2,4],['w',10,0.5]],
    [['y',8,0.8],['d',10,0.6]], [['c',3,3.5],['u',4,1.2]], [['z',2,4.5],['s',12,0.5]],
    [['z',2,4],['y',10,0.6]], [['z',2,3.8],['c',3,3.5]], [['z',3,4.5],['u',6,1.0],['d',12,0.5]]
   ]},
- {name:'Deep Reactor',desc:'13 waves · unstable energy',hint:'Railguns pierce multiple enemies in straight corridors',stars:3,gold:500,lives:10,hpBase:5.8,hpRamp:.52,deco:'forge',
+ {name:'Deep Reactor',desc:'13 waves · unstable energy',hint:'Railguns pierce multiple enemies in straight corridors',stars:3,gold:500,lives:10,hpBase:3.6,hpRamp:.32,deco:'forge',
   pal:{g1:'#3b3b3c',g2:'#242424',pf:'#6a6a6a',pe:'#151515',dash:'rgba(220,220,220,.8)',pad:'#8e8e8e',padE:'#3b3b3c'},
   path:[[-40,80],[400,80],[400,540],[80,540],[80,690]],
-  spots:[[200,180],[200,360],[280,440],[320,240]],
+  spots:[[200,180],[200,360],[280,440],[320,240],[120,140],[280,140],[120,300],[280,300],[120,460],[340,460]],
   waves:[
    [['b',24,0.3]], [['w',8,0.7],['f',16,0.28]], [['d',12,0.6],['y',6,0.9]], [['u',5,1.2],['s',12,0.55]],
    [['t',12,0.7],['r',8,0.65]], [['c',2,3.8],['w',10,0.45]], [['y',10,0.7],['d',10,0.55]],
    [['u',6,1.0],['a',6,0.9]], [['c',3,3.2],['y',8,0.6]], [['z',2,4.0],['r',10,0.6]],
    [['z',2,3.5],['u',5,1.1],['d',12,0.5]], [['z',3,4.0],['c',3,3.2]], [['z',3,3.5],['c',4,3],['w',12,0.4]]
   ]},
- {name:'Cobalt Trench',desc:'14 waves · abyssal darkness',hint:'Permafrost can freeze solid the fast flying Wyrms',stars:3,gold:520,lives:10,hpBase:6.2,hpRamp:.54,deco:'swamp',
+ {name:'Cobalt Trench',desc:'14 waves · abyssal darkness',hint:'Permafrost can freeze solid the fast flying Wyrms',stars:3,gold:520,lives:10,hpBase:3.8,hpRamp:.34,deco:'swamp',
   pal:{g1:'#1c3240',g2:'#10202c',pf:'#3a5d75',pe:'#09121a',dash:'rgba(100,210,255,.8)',pad:'#527e9c',padE:'#1c3240'},
   path:[[240,-40],[240,300],[400,300],[400,500],[80,500],[80,690]],
-  spots:[[140,180],[340,180],[320,400],[200,400],[200,580]],
+  spots:[[140,180],[340,180],[320,400],[200,400],[200,580],[180,100],[300,100],[140,360],[340,460],[140,560],[300,560]],
   waves:[
    [['b',26,0.28]], [['f',20,0.25],['w',8,0.6]], [['s',16,0.5]], [['d',12,0.55],['y',8,0.75]],
    [['u',5,1.1],['t',12,0.6]], [['r',10,0.6],['h',6,0.8]], [['c',3,3.2],['w',12,0.4]],
    [['y',12,0.6],['d',12,0.5]], [['c',3,3.0],['u',5,1.0]], [['z',2,3.5],['y',10,0.5]],
    [['z',2,3.2],['u',6,0.9]], [['z',3,3.8],['c',3,3.0]], [['z',3,3.2],['c',4,2.8]], [['z',4,4.0],['u',6,0.8],['d',14,0.4]]
   ]},
- {name:'Whispering Ruins',desc:'14 waves · overgrown stones',hint:'Titan Cannons stun large colossus and bosses',stars:3,gold:550,lives:10,hpBase:6.6,hpRamp:.56,deco:'tree',
+ {name:'Whispering Ruins',desc:'14 waves · overgrown stones',hint:'Titan Cannons stun large colossus and bosses',stars:3,gold:550,lives:10,hpBase:4.0,hpRamp:.36,deco:'tree',
   pal:{g1:'#33402e',g2:'#20291d',pf:'#5d7355',pe:'#10150e',dash:'rgba(170,220,150,.85)',pad:'#819e76',padE:'#33402e'},
   path:[[-40,400],[400,400],[400,180],[100,180],[100,690]],
-  spots:[[220,280],[220,100],[220,500],[320,500]],
+  spots:[[220,280],[220,100],[220,500],[320,500],[140,100],[300,100],[160,320],[320,320],[160,460],[320,460]],
   waves:[
    [['b',28,0.25]], [['w',10,0.55],['f',22,0.22]], [['d',14,0.5],['y',10,0.65]], [['u',6,1.0],['s',14,0.45]],
    [['t',14,0.55],['r',12,0.5]], [['c',3,3.0],['w',12,0.38]], [['y',14,0.5],['d',12,0.45]],
    [['u',7,0.8],['a',8,0.7]], [['c',4,2.8],['y',10,0.5]], [['z',3,3.5],['r',12,0.5]],
    [['z',3,3.0],['u',6,0.8]], [['z',4,3.2],['c',4,2.6]], [['z',4,2.8],['c',5,2.4]], [['z',5,3.5],['u',8,0.7],['d',16,0.35]]
   ]},
- {name:'Core Singularity',desc:'15 waves · collapse point',hint:'Nuke Mortars and EMP Surge deal with massive swarms',stars:3,gold:600,lives:10,hpBase:7.0,hpRamp:.60,deco:'forge',
+ {name:'Core Singularity',desc:'15 waves · collapse point',hint:'Nuke Mortars and EMP Surge deal with massive swarms',stars:3,gold:600,lives:10,hpBase:4.2,hpRamp:.38,deco:'forge',
   pal:{g1:'#291830',g2:'#190e1f',pf:'#543860',pe:'#0e0510',dash:'rgba(220,150,255,.85)',pad:'#7b5b8c',padE:'#291830'},
   path:[[240,-40],[240,180],[380,180],[380,460],[100,460],[100,690]],
-  spots:[[150,80],[310,80],[240,320],[240,560]],
+  spots:[[150,80],[310,80],[240,320],[240,560],[180,120],[300,120],[180,380],[300,380],[180,520],[300,520]],
   waves:[
    [['b',30,0.22]], [['f',24,0.2],['w',10,0.5]], [['s',18,0.45]], [['d',16,0.45],['y',12,0.55]],
    [['u',7,0.8],['t',16,0.5]], [['r',14,0.45],['h',8,0.7]], [['c',4,2.6],['w',14,0.35]],
@@ -647,97 +647,97 @@ const LEVELS=[
   ]},
 
  // WORLD 3 - Cosmic Void
- {name:'Cosmic Void',desc:'12 waves · deep space',hint:'Quantum Melters burn through huge cosmic targets',stars:3,gold:650,lives:10,hpBase:8.0,hpRamp:.65,deco:'moon',
+ {name:'Cosmic Void',desc:'12 waves · deep space',hint:'Quantum Melters burn through huge cosmic targets',stars:3,gold:650,lives:10,hpBase:4.5,hpRamp:.40,deco:'moon',
   pal:{g1:'#121424',g2:'#080912',pf:'#3a3f61',pe:'#030408',dash:'rgba(255,255,255,.8)',pad:'#535985',padE:'#121424'},
   path:[[-40,240],[200,240],[200,420],[400,420],[400,690]],
-  spots:[[100,140],[300,140],[100,340],[300,340],[300,520]],
+  spots:[[100,140],[300,140],[100,340],[300,340],[300,520],[120,200],[280,200],[120,480],[280,480],[340,600],[460,600]],
   waves:[
    [['b',25,0.3]], [['w',10,0.6],['f',15,0.3]], [['d',10,0.7],['s',12,0.5]], [['u',5,1.2],['y',6,0.8]],
    [['t',10,0.8],['r',8,0.7]], [['c',2,4.0],['w',8,0.5]], [['y',10,0.7],['d',10,0.6]],
    [['u',6,1.0],['a',6,0.9]], [['c',3,3.5],['y',8,0.6]], [['z',2,4.0],['r',10,0.6]],
    [['z',3,3.5],['c',3,3.0]], [['z',4,3.0],['u',6,0.8],['d',12,0.5]]
   ]},
- {name:'Starlight Path',desc:'12 waves · astral roadway',hint:'Overcharge Tesla chains speed-buffed runners',stars:3,gold:700,lives:10,hpBase:9.0,hpRamp:.70,deco:'moon',
+ {name:'Starlight Path',desc:'12 waves · astral roadway',hint:'Overcharge Tesla chains speed-buffed runners',stars:3,gold:700,lives:10,hpBase:4.8,hpRamp:.42,deco:'moon',
   pal:{g1:'#161b33',g2:'#0b0d1a',pf:'#3c4778',pe:'#04050a',dash:'rgba(200,220,255,.85)',pad:'#5767a6',padE:'#161b33'},
   path:[[240,-40],[240,200],[100,200],[100,480],[380,480],[380,690]],
-  spots:[[160,100],[320,100],[240,340],[240,580]],
+  spots:[[160,100],[320,100],[240,340],[240,580],[180,140],[300,140],[160,260],[320,260],[160,420],[320,420]],
   waves:[
    [['b',30,0.25]], [['f',20,0.22],['w',8,0.55]], [['s',15,0.45]], [['d',12,0.5],['y',8,0.7]],
    [['u',6,1.0],['t',12,0.6]], [['r',10,0.6],['h',6,0.8]], [['c',3,3.2],['w',12,0.4]],
    [['y',12,0.6],['d',12,0.5]], [['c',3,3.0],['u',5,1.0]], [['z',3,3.5],['y',10,0.5]],
    [['z',3,3.2],['c',3,2.8]], [['z',4,3.0],['u',8,0.7],['d',14,0.45]]
   ]},
- {name:'Nebula Rift',desc:'13 waves · gas cloud pass',hint:'Refracting Prisms split laser damage across clusters',stars:3,gold:750,lives:10,hpBase:10.0,hpRamp:.75,deco:'crystal',
+ {name:'Nebula Rift',desc:'13 waves · gas cloud pass',hint:'Refracting Prisms split laser damage across clusters',stars:3,gold:750,lives:10,hpBase:5.2,hpRamp:.45,deco:'crystal',
   pal:{g1:'#1e132c',g2:'#0f0917',pf:'#4a3366',pe:'#040206',dash:'rgba(230,170,255,.85)',pad:'#6b4f91',padE:'#1e132c'},
   path:[[-40,320],[400,320],[400,140],[120,140],[120,690]],
-  spots:[[240,220],[240,60],[240,420],[320,420]],
+  spots:[[240,220],[240,60],[240,420],[320,420],[160,100],[320,100],[160,260],[320,260],[160,520],[320,520]],
   waves:[
    [['b',32,0.22]], [['w',12,0.5],['f',22,0.2]], [['d',14,0.45],['y',10,0.6]], [['u',6,0.9],['s',14,0.4]],
    [['t',14,0.5],['r',12,0.45]], [['c',3,2.8],['w',12,0.35]], [['y',14,0.5],['d',12,0.4]],
    [['u',7,0.8],['a',8,0.7]], [['c',4,2.6],['y',10,0.45]], [['z',3,3.2],['r',12,0.45]],
    [['z',3,2.8],['u',6,0.7]], [['z',4,3.0],['c',4,2.4]], [['z',4,2.5],['c',5,2.2],['d',16,0.4]]
   ]},
- {name:'Supernova Core',desc:'13 waves · extreme fusion',hint:'Lava Spitters inflict continuous burn on slow targets',stars:3,gold:800,lives:10,hpBase:11.0,hpRamp:.80,deco:'ember',
+ {name:'Supernova Core',desc:'13 waves · extreme fusion',hint:'Lava Spitters inflict continuous burn on slow targets',stars:3,gold:800,lives:10,hpBase:5.6,hpRamp:.48,deco:'ember',
   pal:{g1:'#3a1313',g2:'#220808',pf:'#783030',pe:'#0c0202',dash:'rgba(255,130,130,.85)',pad:'#a14848',padE:'#3a1313'},
   path:[[240,-40],[240,140],[80,140],[80,460],[400,460],[400,690]],
-  spots:[[160,60],[320,60],[240,300],[240,560]],
+  spots:[[160,60],[320,60],[240,300],[240,560],[140,200],[340,200],[140,380],[340,380],[140,520],[340,520]],
   waves:[
    [['b',34,0.2]], [['f',24,0.18],['w',12,0.45]], [['s',18,0.4]], [['d',16,0.4],['y',12,0.5]],
    [['u',7,0.8],['t',16,0.45]], [['r',14,0.4],['h',8,0.6]], [['c',4,2.4],['w',14,0.3]],
    [['y',16,0.45],['d',14,0.35]], [['c',4,2.2],['u',7,0.6]], [['z',3,2.8],['y',12,0.4]],
    [['z',4,2.5],['c',4,2.2]], [['z',4,2.2],['c',5,2.0]], [['z',5,2.8],['u',9,0.5],['d',18,0.3]]
   ]},
- {name:'Black Hole Horizon',desc:'14 waves · gravity well',hint:'Titan Cannons stun massive cosmic colossi',stars:3,gold:850,lives:10,hpBase:12.0,hpRamp:.85,deco:'moon',
+ {name:'Black Hole Horizon',desc:'14 waves · gravity well',hint:'Titan Cannons stun massive cosmic colossi',stars:3,gold:850,lives:10,hpBase:6.0,hpRamp:.50,deco:'moon',
   pal:{g1:'#0a0a0f',g2:'#020204',pf:'#242436',pe:'#000000',dash:'rgba(180,180,250,.7)',pad:'#3c3c52',padE:'#0a0a0f'},
   path:[[-40,120],[360,120],[360,420],[80,420],[80,690]],
-  spots:[[180,220],[180,320],[430,270],[200,520]],
+  spots:[[180,220],[180,320],[430,270],[200,520],[120,180],[280,180],[120,360],[280,360],[120,480],[280,480]],
   waves:[
    [['b',36,0.18]], [['w',14,0.4],['f',26,0.16]], [['d',18,0.36],['y',14,0.45]], [['u',8,0.7],['s',20,0.35]],
    [['t',18,0.4],['r',16,0.35]], [['c',4,2.2],['w',16,0.28]], [['y',18,0.4],['d',16,0.3]],
    [['u',8,0.6],['a',10,0.6]], [['c',5,2.0],['y',12,0.4]], [['z',4,2.5],['r',14,0.38]],
    [['z',4,2.2],['u',8,0.5]], [['z',5,2.4],['c',5,2.0]], [['z',5,2.0],['c',6,1.8]], [['z',6,2.5],['u',10,0.5],['d',20,0.25]]
   ]},
- {name:'Pulsar Ridge',desc:'14 waves · stellar beacon',hint:'EMP Surge removes shields from shielded pulsar sentries',stars:3,gold:900,lives:10,hpBase:13.0,hpRamp:.90,deco:'storm',
+ {name:'Pulsar Ridge',desc:'14 waves · stellar beacon',hint:'EMP Surge removes shields from shielded pulsar sentries',stars:3,gold:900,lives:10,hpBase:6.4,hpRamp:.52,deco:'storm',
   pal:{g1:'#122030',g2:'#08101a',pf:'#2c4a6b',pe:'#020406',dash:'rgba(100,220,255,.8)',pad:'#446e9c',padE:'#122030'},
   path:[[240,-40],[240,300],[80,300],[80,480],[400,480],[400,690]],
-  spots:[[140,180],[340,180],[240,400],[240,580]],
+  spots:[[140,180],[340,180],[240,400],[240,580],[160,240],[320,240],[160,360],[320,360],[160,540],[320,540]],
   waves:[
    [['b',38,0.16]], [['f',28,0.14],['w',14,0.38]], [['s',22,0.32]], [['d',20,0.32],['y',16,0.4]],
    [['u',9,0.6],['t',20,0.36]], [['r',18,0.32],['h',10,0.5]], [['c',5,1.8],['w',18,0.26]],
    [['y',20,0.36],['d',18,0.28]], [['c',5,1.7],['u',9,0.45]], [['z',4,2.2],['y',14,0.36]],
    [['z',4,2.0],['u',9,0.4]], [['z',5,2.0],['c',5,1.8]], [['z',5,1.8],['c',6,1.6]], [['z',6,2.2],['u',11,0.4],['d',22,0.22]]
   ]},
- {name:'Dark Matter Field',desc:'14 waves · heavy particles',hint:'Railguns ignore dark matter armor entirely',stars:3,gold:950,lives:10,hpBase:14.0,hpRamp:.95,deco:'crystal',
+ {name:'Dark Matter Field',desc:'14 waves · heavy particles',hint:'Railguns ignore dark matter armor entirely',stars:3,gold:950,lives:10,hpBase:6.8,hpRamp:.55,deco:'crystal',
   pal:{g1:'#1d152b',g2:'#0e0a17',pf:'#483669',pe:'#040206',dash:'rgba(200,160,255,.8)',pad:'#685294',padE:'#1d152b'},
   path:[[-40,520],[400,520],[400,240],[80,240],[80,690]],
-  spots:[[240,380],[240,140],[440,380],[440,140]],
+  spots:[[240,380],[240,140],[440,380],[440,140],[160,180],[320,180],[160,300],[320,300],[160,440],[320,440]],
   waves:[
    [['b',40,0.15]], [['w',16,0.35],['f',30,0.12]], [['d',22,0.3],['y',18,0.35]], [['u',10,0.5],['s',24,0.3]],
    [['t',22,0.32],['r',20,0.3]], [['c',5,1.6],['w',20,0.24]], [['y',22,0.32],['d',20,0.26]],
    [['u',10,0.4],['a',12,0.5]], [['c',6,1.5],['y',14,0.32]], [['z',5,1.8],['r',16,0.35]],
    [['z',5,1.6],['u',10,0.35]], [['z',6,1.8],['c',6,1.6]], [['z',6,1.5],['c',7,1.4]], [['z',7,1.8],['u',12,0.35],['d',24,0.2]]
   ]},
- {name:'Celestial Gate',desc:'14 waves · galactic entry',hint:'Blizzard slow and damage keeps gate keys safe',stars:3,gold:1000,lives:10,hpBase:15.0,hpRamp:1.00,deco:'storm',
+ {name:'Celestial Gate',desc:'14 waves · galactic entry',hint:'Blizzard slow and damage keeps gate keys safe',stars:3,gold:1000,lives:10,hpBase:7.2,hpRamp:.58,deco:'storm',
   pal:{g1:'#1e2c3a',g2:'#0f161f',pf:'#485f78',pe:'#040608',dash:'rgba(180,220,255,.85)',pad:'#6884a3',padE:'#1e2c3a'},
   path:[[120,-40],[120,260],[360,260],[360,480],[120,480],[120,690]],
-  spots:[[240,140],[240,360],[240,580],[420,360]],
+  spots:[[240,140],[240,360],[240,580],[420,360],[180,200],[300,200],[180,420],[300,420],[180,540],[300,540]],
   waves:[
    [['b',42,0.14]], [['f',32,0.11],['w',18,0.32]], [['s',26,0.28]], [['d',24,0.28],['y',20,0.32]],
    [['u',11,0.45],['t',24,0.28]], [['r',22,0.28],['h',12,0.4]], [['c',6,1.4],['w',22,0.22]],
    [['y',24,0.28],['d',22,0.24]], [['c',6,1.3],['u',11,0.4]], [['z',5,1.6],['y',16,0.3]],
    [['z',5,1.4],['u',11,0.3]], [['z',6,1.6],['c',6,1.4]], [['z',6,1.3],['c',7,1.2]], [['z',7,1.6],['u',13,0.3],['d',26,0.18]]
   ]},
- {name:'Ether Sanctum',desc:'14 waves · temple of spirits',hint:'Cluster Mortar shrapnels damage phantom phalanxes',stars:3,gold:1100,lives:10,hpBase:16.0,hpRamp:1.05,deco:'moon',
+ {name:'Ether Sanctum',desc:'14 waves · temple of spirits',hint:'Cluster Mortar shrapnels damage phantom phalanxes',stars:3,gold:1100,lives:10,hpBase:7.6,hpRamp:.60,deco:'moon',
   pal:{g1:'#2b1c3a',g2:'#150d1f',pf:'#5c3f78',pe:'#040206',dash:'rgba(220,180,255,.85)',pad:'#845fa6',padE:'#2b1c3a'},
   path:[[-40,180],[400,180],[400,460],[100,460],[100,690]],
-  spots:[[200,280],[200,80],[200,560],[320,560]],
+  spots:[[200,280],[200,80],[200,560],[320,560],[140,120],[320,120],[140,340],[320,340],[140,500],[320,500]],
   waves:[
    [['b',44,0.12]], [['w',20,0.28],['f',34,0.1]], [['d',26,0.25],['y',22,0.28]], [['u',12,0.4],['s',28,0.25]],
    [['t',26,0.25],['r',24,0.25]], [['c',6,1.3],['w',24,0.2]], [['y',26,0.25],['d',24,0.22]],
    [['u',12,0.35],['a',14,0.4]], [['c',7,1.2],['y',16,0.28]], [['z',6,1.4],['r',18,0.3]],
    [['z',6,1.2],['u',12,0.3]], [['z',7,1.4],['c',7,1.2]], [['z',7,1.2],['c',8,1.0]], [['z',8,1.4],['u',14,0.25],['d',28,0.15]]
   ]},
- {name:'The Keep of Eternity',desc:'15 waves · infinite conflict',hint:'Ultimate evolved weapons are needed to survive eternity',stars:3,gold:1200,lives:10,hpBase:18.0,hpRamp:1.10,deco:'moon',
+ {name:'The Keep of Eternity',desc:'15 waves · infinite conflict',hint:'Ultimate evolved weapons are needed to survive eternity',stars:3,gold:1200,lives:10,hpBase:8.0,hpRamp:.65,deco:'moon',
   pal:{g1:'#120e20',g2:'#080610',pf:'#46366b',pe:'#020104',dash:'rgba(255,215,0,.8)',pad:'#685496',padE:'#120e20'},
   path:[[240,-40],[240,100],[400,100],[400,540],[80,540],[80,200],[320,200],[320,420],[160,420],[160,300],[240,300],[240,690]],
   spots:[[120,260],[120,360],[200,360],[280,250],[360,150],[360,250],[360,350],[300,150],[120,480],[200,480],[280,480],[180,600],[300,600]],
@@ -1714,19 +1714,32 @@ document.querySelectorAll('.world-tab').forEach(tab=>{
   });
 });
 
-/* ================= cheat code (type + Enter) ================= */
+/* ================= cheat code (type + Enter & Mobile Taps) ================= */
 let __cheatBuf = '';
 let __cheatAuregaCool = false;
+
+function applyCheatCode(code) {
+  const cleanCode = code.trim().toLowerCase();
+  if (cleanCode === 'aurega') {
+    G.gold += 1000;
+    toast('cheat active');
+    refreshDock();
+    saveRun();
+    return true;
+  } else if (cleanCode === 'auregacool') {
+    __cheatAuregaCool = !__cheatAuregaCool;
+    toast(__cheatAuregaCool ? 'Auregacool: Tap anywhere to place new pads!' : 'Auregacool disabled');
+    saveRun();
+    return true;
+  }
+  return false;
+}
+
 document.addEventListener('keydown', (ev) => {
   // Enter checks the buffer
   if (ev.key === 'Enter'){
-    if (__cheatBuf.toLowerCase() === 'aurega'){
-      G.gold += 1000;
-      toast('cheat active');
-      refreshDock();
-    } else if (__cheatBuf.toLowerCase() === 'auregacool'){
-      __cheatAuregaCool = !__cheatAuregaCool;
-      toast(__cheatAuregaCool ? 'Auregacool: Tap anywhere to place new pads!' : 'Auregacool disabled');
+    if (applyCheatCode(__cheatBuf)) {
+      // Cheat activated successfully
     }
     __cheatBuf = '';
     return;
@@ -1740,6 +1753,44 @@ document.addEventListener('keydown', (ev) => {
   if (ev.key.length === 1) __cheatBuf += ev.key;
   if (__cheatBuf.length > 32) __cheatBuf = __cheatBuf.slice(-32);
 });
+
+// Mobile tap listener for cheats
+let logoTaps = 0;
+let goldTaps = 0;
+
+function promptCheat() {
+  const code = prompt("Enter Cheat Code:");
+  if (code) {
+    if (!applyCheatCode(code)) {
+      toast("Invalid cheat code");
+    }
+  }
+}
+
+// Bind taps once DOM is loaded / script evaluates
+const logo = el('cannonArt');
+if (logo) {
+  logo.style.cursor = 'pointer';
+  logo.addEventListener('click', () => {
+    logoTaps++;
+    if (logoTaps >= 5) {
+      logoTaps = 0;
+      promptCheat();
+    }
+  });
+}
+
+const goldChip = el('chipGold');
+if (goldChip) {
+  goldChip.style.cursor = 'pointer';
+  goldChip.addEventListener('click', () => {
+    goldTaps++;
+    if (goldTaps >= 5) {
+      goldTaps = 0;
+      promptCheat();
+    }
+  });
+}
 
 /* ================= rendering ================= */
 const bg=document.createElement('canvas');
