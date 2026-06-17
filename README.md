@@ -2,7 +2,7 @@
 
 A self-contained, browser-based tower defense game built entirely in a single HTML file. No frameworks, no build steps — just open and play.
 
-**[▶ Play Now](https://cannon-keep.netlify.app)**
+**[▶ Play Now](https://cannon-keep-game.netlify.app/)**
 
 ![GitHub](https://img.shields.io/badge/license-MIT-blue?style=flat-square)
 ![Zero Dependencies](https://img.shields.io/badge/dependencies-0-green?style=flat-square)
@@ -14,7 +14,7 @@ A self-contained, browser-based tower defense game built entirely in a single HT
 
 Open [cannon-tower-defense.html](cannon-tower-defense.html) in any modern browser — it works offline too. No server, no install, no nonsense.
 
-**Live demo:** [cannon-keep.netlify.app](https://cannon-keep.netlify.app)
+**Live demo:** [cannon-keep.netlify.app](https://cannon-keep-game.netlify.app/)
 
 ---
 
