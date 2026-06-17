@@ -21,21 +21,22 @@ Open [cannon-tower-defense.html](cannon-tower-defense.html) in any modern browse
 ## 🕹️ How to Play
 
 1. **Conquer the maps in order** — 30 maps across 3 Worlds (World 1: Classic, World 2: Depths, World 3: Void). Clear a map to unlock the next!
-2. **Tap a pad** (◯) and choose a tower to place:
-   - 💣 **Cannon** — splash damage, slow fire rate
-   - 🏹 **Archer** — rapid fire, single target
-   - ❄️ **Frost** — slows enemies in range
-   - 🎯 **Musket** *(Map 2+)* — long-range sniper, shreds tanks
-   - ⚡ **Tesla** *(Map 3+)* — chain lightning that arcs between foes
-   - 🐉 **Dragon** *(Map 4+)* — splash fireballs that keep burning
-   - 💥 **Mortar** *(Map 5+)* — massive long-range siege blasts
-   - 🔮 **Prism** *(Map 6+)* — rapid-fire laser beams
-   - 🌟 **Aurega Zuka** *(Hero Weapon)* — extremely powerful splash and target damage, high cost (1,000)
+2. **Tap a pad** (◯) and choose a tower to place. Tap any tower button to see its **stats and description** before building:
+   - 💣 **Cannon** — explosive splash damage to groups
+   - 🏹 **Archer** — fast-firing arrows, cheap early-game DPS
+   - ❄️ **Frost** — chills and slows enemy movement
+   - 🎯 **Musket** *(Map 2+)* — long-range sniper, high single-target damage
+   - ⚡ **Tesla** *(Map 3+)* — chain lightning arcs between multiple foes
+   - 🐉 **Dragon** *(Map 4+)* — splash fireballs with burn damage over time
+   - 💥 **Mortar** *(Map 5+)* — massive long-range siege explosions
+   - 🔮 **Prism** *(Map 6+)* — instant laser beams, extremely fast attack rate
+   - 🌟 **Aurega Zuka** *(Hero Weapon)* — ultimate hero tower, devastating splash + range
 3. **Tap a placed tower** to upgrade it up to **Lv 5** or unlock **Evolved Specializations (Lv 6)**
 4. **Start each wave** and defend your keep from incoming enemies
 5. **Earn gold** by defeating enemies — spend it on more towers
-6. **Quit anytime** — your run auto-saves every wave and every build, continue right where you left off
-7. **Survive all waves** across 30 maps and chase ★★★ ratings to conquer Cannon Keep!
+6. **Use 1×/2× speed toggle** to play at your pace (works on mobile too!)
+7. **Quit anytime** — your run auto-saves every wave and every build, continue right where you left off
+8. **Survive all waves** across 30 maps and chase ★★★ ratings to conquer Cannon Keep!
 
 ---
 
@@ -44,14 +45,16 @@ Open [cannon-tower-defense.html](cannon-tower-defense.html) in any modern browse
 | Feature | Details |
 |---------|---------|
 | 🎯 **9 Tower Types** | Cannon, Archer, Frost, Musket, Tesla, Dragon, Mortar, Prism, and Aurega Zuka (Hero weapon) |
-| 🗺️ **30 Maps across 3 Worlds** | W1: Classic · W2: Depths · W3: Void — clear each map to unlock the next |
+| 📋 **Weapon Info Tooltips** | Tap any tower to see DMG, Range, Speed, special properties & description before building |
+| 🗺️ **30 Maps across 3 Worlds** | W1: Classic · W2: Depths · W3: Void — 12+ build spots per map, all winnable |
 | 👾 **18 Enemy Types** | Scouts, Runners, Armored, Healers, Tanks, Regenerators, Splitters, Knights, Shamans, Phantoms, Wraith, Shielded, Necromancer, Skeletons, Void Wyrms, Colossus, plus Bosses and Warlords |
 | ⬆️ **Tower Upgrades** | Upgrade towers up to **Lv 5**, and unlock **Evolved Specializations (Lv 6)** with unique branching skills |
-| 💰 **Economy System** | Earn gold, strategically build and sell towers |
-| ⚡ **Speed Control** | 1× / 2× game speed toggle |
+| 💰 **Balanced Economy** | Scaled starting gold and wave bonuses — every level is winnable with smart play |
+| ⚡ **Speed Control** | 1× / 2× game speed toggle — works on both desktop and mobile |
 | 🏆 **Star Ratings** | Earn up to ★★★ per map based on lives kept |
 | 💾 **Auto-Save** | Runs are checkpointed every wave, build, upgrade, sell, and specialization — quit and continue later |
-| 📱 **Mobile-Friendly** | Touch controls, responsive layout, optimized mobile cheat menu |
+| 📱 **Mobile-Optimized** | Touch controls, responsive HUD, inline cheat input, 2× speed on mobile |
+| 🔐 **Cheat Codes** | Type on keyboard or tap 5× on screen to open cheat menu — `aurega` (+1,000 gold), `auregacool` (free placement), `aurega50k` (+50,000 gold) |
 | 🔇 **Sound Effects** | Procedural audio for shots, hits, builds, and upgrades |
 | 🌐 **Works Offline** | Zero dependencies, single HTML file |
 | 🖥️ **Any Browser** | Chrome, Safari, Firefox, Edge — desktop & mobile |
@@ -61,7 +64,7 @@ Open [cannon-tower-defense.html](cannon-tower-defense.html) in any modern browse
 ## 🛠️ Tech Stack
 
 - **Pure HTML5 Canvas + JavaScript** — no libraries, no frameworks
-- **~2400 lines** in a single file
+- **~2600 lines** in a single file
 - **Mobile-first** responsive design with touch support
 - **Procedural audio** via Web Audio API
 
@@ -118,7 +121,7 @@ You are free to use, copy, modify, merge, publish, distribute, sublicense, and/o
 
 <div align="center">
 
-**Cargo Keep** — Built with ❤️ and zero dependencies.
+**Cannon Keep** — Built with ❤️ and zero dependencies.
 
 *Open one file. Play forever.*
 

@@ -28,7 +28,7 @@ body{
 
 /* ---------- HUD ---------- */
 #hud{
-  display:flex;align-items:center;gap:6px;flex-wrap:nowrap;
+  display:flex;align-items:center;gap:6px;flex-wrap:wrap;
   padding:calc(10px + env(safe-area-inset-top)) 10px 10px;
 }
 .chip{
@@ -36,7 +36,7 @@ body{
   background:rgba(21, 35, 62, 0.6);border:1px solid rgba(255,255,255,0.06);border-radius:999px;
   padding:6px 12px;font-size:13px;font-weight:700;min-height:36px;
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  box-shadow:0 4px 16px rgba(0,0,0,0.2);
+  box-shadow:0 4px 16px rgba(0,0,0,0.2);flex-shrink:1;
 }
 .chip .ic{font-size:12px;line-height:1}
 #chipLives .ic{color:var(--red)}
@@ -73,6 +73,31 @@ canvas{display:block;border-radius:16px;box-shadow:0 12px 48px rgba(0,0,0,0.55),
   opacity:0;pointer-events:none;white-space:nowrap;
 }
 #banner.go{animation:bannerIn 1.7s cubic-bezier(0.19,1,0.22,1) forwards}
+#cheatOverlay{
+  position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;
+  background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+}
+#cheatOverlay.show{display:flex}
+#cheatBox{
+  background:rgba(21,35,62,0.95);border:2px solid var(--gold);border-radius:16px;
+  padding:20px 24px;width:280px;max-width:90vw;text-align:center;
+  box-shadow:0 12px 48px rgba(0,0,0,0.6),0 0 20px rgba(255,201,77,0.15);
+}
+#cheatBox label{display:block;color:var(--gold);font-weight:800;font-size:14px;margin-bottom:10px;letter-spacing:.04em}
+#cheatInput{
+  width:100%;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);
+  background:rgba(0,0,0,0.3);color:#fff;font:700 16px var(--font);outline:none;
+  text-align:center;letter-spacing:.05em;
+}
+#cheatInput:focus{border-color:var(--gold)}
+#cheatSubmit{
+  margin-top:12px;padding:10px 24px;border-radius:10px;border:none;
+  background:var(--gold);color:#3a2a05;font:800 14px var(--font);cursor:pointer;
+}
+#cheatCancel{
+  margin-top:8px;padding:8px 20px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);
+  background:transparent;color:var(--dim);font:700 12px var(--font);cursor:pointer;
+}
 @keyframes bannerIn{
   0%{opacity:0;transform:translateX(-50%) scale(.5);filter:blur(5px)}
   14%{opacity:1;transform:translateX(-50%) scale(1.06);filter:blur(0)}
@@ -136,7 +161,7 @@ button.ghost:hover{background:rgba(255,255,255,0.08);color:#fff}
   flex:1;min-height:68px;border:1px solid rgba(255,255,255,0.06);border-radius:14px;cursor:pointer;
   background:rgba(255,255,255,0.03);color:var(--txt);font:800 13px var(--font);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 2px;
-  transition:all 0.15s;
+  transition:all 0.15s;position:relative;
 }
 .bopt:hover:not(:disabled){background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15)}
 .bopt .ticon{width:17px;height:17px;border-radius:50%;box-shadow:0 0 0 2px rgba(0,0,0,.3) inset}
@@ -144,6 +169,18 @@ button.ghost:hover{background:rgba(255,255,255,0.08);color:#fff}
 .bopt .sub{font-size:10px;color:var(--dim);font-weight:700}
 .bopt:disabled{opacity:.3;cursor:default}
 .bopt:active:not(:disabled){transform:translateY(2px)}
+/* weapon info tooltip on tap/hold */
+.bopt .tip{
+  display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+  background:rgba(10,16,32,0.96);border:1px solid rgba(255,255,255,0.1);border-radius:12px;
+  padding:10px 14px;width:200px;max-width:80vw;z-index:40;text-align:left;
+  box-shadow:0 8px 24px rgba(0,0,0,0.5);pointer-events:none;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+}
+.bopt .tip.show{display:block}
+.bopt .tip b{color:var(--gold);font-size:12px}
+.bopt .tip .stat{color:rgba(255,255,255,0.7);font-size:10px;font-weight:700;line-height:1.5}
+.bopt .tip .desc{color:var(--dim);font-size:10px;font-weight:600;margin-top:4px;line-height:1.4}
 
 /* branching specializations styling */
 .spec-btn {
@@ -155,7 +192,7 @@ button.ghost:hover{background:rgba(255,255,255,0.08);color:#fff}
 }
 .spec-btn:disabled { background:#2c3f60; color:#6e82a6; box-shadow:none; cursor:default; opacity:0.5; }
 .spec-btn .spec-title { font-size:11px; font-weight:900; text-transform:uppercase; letter-spacing:0.02em; color:#fff }
-.spec-btn .spec-desc { font-size:9px; color:rgba(255,255,255,0.75); font-weight:700; line-height:1.15; max-width:180px; text-align:center; display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden }
+.spec-btn .spec-desc { font-size:9px; color:rgba(255,255,255,0.75); font-weight:700; line-height:1.15; max-width:180px; text-align:center; display:-webkit-box;display:box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;box-orient:vertical;overflow:hidden }
 .spec-btn:active:not(:disabled) { transform:translateY(2px); box-shadow:none; }
 
 /* ---------- Overlays ---------- */
@@ -230,7 +267,7 @@ ul.how b{color:var(--gold)}
 /* short screens (landscape phones): side rails instead of stacked bars */
 @media(max-height:520px){
   #app{flex-direction:row}
-  #hud{flex-direction:column;align-items:stretch;justify-content:center;gap:7px;
+  #hud{flex-direction:column;align-items:stretch;justify-content:center;gap:7px;flex-wrap:wrap;
     padding:10px 8px 10px calc(10px + env(safe-area-inset-left))}
   #hud .spacer{display:none}
   .chip{justify-content:center}
@@ -268,6 +305,14 @@ ul.how b{color:var(--gold)}
     <canvas id="cv"></canvas>
     <div id="banner"></div>
     <div id="toast"></div>
+    <div id="cheatOverlay">
+      <div id="cheatBox">
+        <label>Enter Cheat Code</label>
+        <input type="text" id="cheatInput" autocomplete="off" autocapitalize="off" spellcheck="false">
+        <button id="cheatSubmit">Activate</button><br>
+        <button id="cheatCancel">Cancel</button>
+      </div>
+    </div>
   </main>
 
   <footer id="dock">
@@ -370,25 +415,34 @@ const E_TYPES={
 };
 const TOWER_TYPES={
   cannon:{name:'Cannon',sub:'splash',cost:50,up:[45,75,120,180],splash:30,spd:340,color:'#5f739c',
+    desc:'Explosive shells deal splash damage to groups of enemies.',
     lv:[{dmg:12,range:95,rate:1.1},{dmg:20,range:106,rate:1.3},{dmg:34,range:118,rate:1.55},{dmg:54,range:130,rate:1.8},{dmg:80,range:140,rate:2.0}]},
   bolt:{name:'Archer',sub:'rapid',cost:40,up:[35,60,95,140],splash:0,spd:520,color:'#d98e2b',
+    desc:'Fast-firing arrows. Great DPS and cheap to deploy early.',
     lv:[{dmg:5,range:108,rate:2.6},{dmg:8,range:118,rate:3.1},{dmg:13,range:128,rate:3.6},{dmg:20,range:138,rate:4.2},{dmg:30,range:148,rate:4.8}]},
   frost:{name:'Frost',sub:'slows',cost:45,up:[40,70,110,160],splash:0,spd:300,color:'#4ecbe8',
+    desc:'Chills enemies, slowing their movement speed significantly.',
     slow:[.35,.45,.55,.65,.75],slowDur:1.6,
     lv:[{dmg:4,range:90,rate:1.0},{dmg:6,range:98,rate:1.2},{dmg:9,range:106,rate:1.4},{dmg:13,range:114,rate:1.6},{dmg:18,range:122,rate:1.8}]},
   musket:{name:'Musket',sub:'snipe',cost:70,up:[60,100,160,240],splash:0,spd:760,color:'#8d6b4a',unlock:1,
+    desc:'Long-range sniper bullets. High damage per shot, slow fire rate.',
     lv:[{dmg:34,range:150,rate:0.45},{dmg:56,range:165,rate:0.5},{dmg:90,range:180,rate:0.55},{dmg:145,range:195,rate:0.6},{dmg:220,range:210,rate:0.65}]},
   tesla:{name:'Tesla',sub:'chain',cost:65,up:[55,90,145,200],splash:0,spd:600,color:'#e8d44e',unlock:2,
+    desc:'Lightning chains to multiple nearby enemies. Great vs groups.',
     chain:[2,3,4,5,6],chainPct:0.6,chainR:75,
     lv:[{dmg:9,range:100,rate:1.5},{dmg:14,range:110,rate:1.7},{dmg:22,range:120,rate:1.9},{dmg:34,range:130,rate:2.1},{dmg:50,range:140,rate:2.3}]},
   dragon:{name:'Dragon',sub:'burn',cost:90,up:[80,130,200,280],splash:26,spd:380,color:'#e0563c',unlock:3,
+    desc:'Breathes fire that burns enemies over time. Splash + DoT.',
     burn:[6,11,18,30,45],burnDur:2.5,
     lv:[{dmg:18,range:105,rate:0.9},{dmg:30,range:115,rate:1.0},{dmg:48,range:125,rate:1.1},{dmg:75,range:135,rate:1.2},{dmg:110,range:145,rate:1.3}]},
   mortar:{name:'Mortar',sub:'siege',cost:85,up:[75,120,185,260],splash:55,spd:240,color:'#90a86a',unlock:4,
+    desc:'Hurls explosive shells with huge splash radius. Devastates clusters.',
     lv:[{dmg:32,range:135,rate:0.5},{dmg:52,range:148,rate:0.55},{dmg:80,range:160,rate:0.6},{dmg:120,range:172,rate:0.65},{dmg:170,range:184,rate:0.7}]},
   prism:{name:'Prism',sub:'laser',cost:110,up:[95,150,220,300],splash:0,spd:980,color:'#e87ad8',unlock:5,
+    desc:'Instant laser beam. Extremely fast attack rate, no travel time.',
     lv:[{dmg:15,range:125,rate:3.0},{dmg:22,range:135,rate:3.4},{dmg:32,range:145,rate:3.8},{dmg:46,range:155,rate:4.2},{dmg:65,range:165,rate:4.6}]},
   auregazoka:{name:'Aurega Zuka',sub:'hero',cost:1000,up:[800,1200,1800,2500],splash:65,spd:850,color:'#ffc94d',
+    desc:'Ultimate hero tower. Massive damage, huge range, devastating splash.',
     lv:[{dmg:150,range:160,rate:2.0},{dmg:220,range:175,rate:2.2},{dmg:320,range:190,rate:2.4},{dmg:480,range:205,rate:2.6},{dmg:750,range:220,rate:2.8}]},
 };
 const TOWER_BRANCHES={
@@ -432,7 +486,7 @@ const TOWER_BRANCHES={
 const SELL_PCT=0.7;
 const LEVELS=[
  // WORLD 1 - Classic
- {name:'Meadow Run',desc:'10 waves · gentle start',hint:'Best 3-star weapon: Cannon',stars:1,gold:130,lives:15,hpBase:1,hpRamp:.13,deco:'tree',
+ {name:'Meadow Run',desc:'10 waves · gentle start',hint:'Best 3-star weapon: Cannon',stars:1,gold:150,lives:15,hpBase:1,hpRamp:.13,deco:'tree',
   pal:{g1:'#7ec850',g2:'#76bf49',pf:'#e7b876',pe:'#b98c4f',dash:'rgba(246,217,160,.8)',pad:'#cfc3a0',padE:'#a89a72'},
   path:[[-40,80],[400,80],[400,220],[80,220],[80,360],[400,360],[400,500],[80,500],[80,690]],
   spots:[[120,150],[240,150],[348,150],[136,290],[248,290],[360,290],[120,430],[240,430],[348,430],[200,570],[320,570]],
@@ -444,7 +498,7 @@ const LEVELS=[
  {name:'Dusty Dunes',desc:'12 waves · twisting trail',hint:'Best 3-star weapon: Archer',stars:2,gold:150,lives:13,hpBase:1.1,hpRamp:.16,deco:'cactus',
   pal:{g1:'#d8c27a',g2:'#cfb86e',pf:'#c98850',pe:'#96603a',dash:'rgba(240,205,160,.85)',pad:'#efe1b0',padE:'#b3a06e'},
   path:[[240,-40],[240,140],[80,140],[80,520],[240,520],[240,300],[400,300],[400,690]],
-  spots:[[100,60],[330,80],[160,200],[310,225],[160,330],[310,390],[160,460],[310,560],[448,440],[90,600]],
+  spots:[[100,60],[330,80],[160,200],[310,225],[160,330],[310,390],[160,460],[310,560],[448,440],[90,600],[240,140],[80,400]],
   waves:[
    [['b',10,0.85]], [['b',8,0.7],['f',6,0.5]], [['s',4,1.4],['b',8,0.65]], [['t',4,1.5],['f',8,0.5]],
    [['h',2,2.0],['b',12,0.6]], [['f',16,0.42]], [['s',6,1.1],['h',2,2.0],['b',10,0.6]],
@@ -454,7 +508,7 @@ const LEVELS=[
  {name:'Frostpeak Pass',desc:'13 waves · the long siege',hint:'Best 3-star weapon: Frost',stars:3,gold:170,lives:12,hpBase:1.3,hpRamp:.19,deco:'pine',
   pal:{g1:'#cfe3ec',g2:'#c2d9e4',pf:'#b0906b',pe:'#7e6448',dash:'rgba(238,222,200,.85)',pad:'#e9f2f6',padE:'#93b2c2'},
   path:[[-40,60],[400,60],[400,180],[80,180],[80,300],[400,300],[400,420],[80,420],[80,540],[400,540],[400,690]],
-  spots:[[140,120],[260,120],[220,240],[340,240],[140,360],[260,360],[220,480],[340,480]],
+  spots:[[140,120],[260,120],[220,240],[340,240],[140,360],[260,360],[220,480],[340,480],[100,240],[360,120],[100,480],[360,360]],
   waves:[
    [['b',12,0.7]], [['f',12,0.45]], [['s',5,1.2],['b',10,0.6]], [['t',5,1.3],['f',8,0.5]],
    [['h',3,1.6],['s',6,1.1]], [['x',1,0],['t',4,1.4]], [['f',18,0.38],['h',2,1.8]],
@@ -465,7 +519,7 @@ const LEVELS=[
  {name:'Ember Wastes',desc:'14 waves · veterans only',hint:'Best 3-star weapon: Musket',stars:3,gold:190,lives:10,hpBase:1.5,hpRamp:.22,deco:'ember',
   pal:{g1:'#a05c40',g2:'#965237',pf:'#52414c',pe:'#352a33',dash:'rgba(255,160,90,.7)',pad:'#d8b59a',padE:'#8a5f4a'},
   path:[[-40,580],[400,580],[400,80],[80,80],[80,460],[300,460],[300,200],[180,200],[180,690]],
-  spots:[[130,520],[340,520],[448,330],[140,140],[240,140],[340,140],[130,300],[240,300],[350,330],[240,520]],
+  spots:[[130,520],[340,520],[448,330],[140,140],[240,140],[340,140],[130,300],[240,300],[350,330],[240,520],[80,200],[360,440],[80,440]],
   waves:[
    [['b',14,0.6]], [['f',14,0.4]], [['s',7,1.0],['b',12,0.55]], [['h',3,1.5],['r',5,1.2]],
    [['f',20,0.35],['s',6,1.0]], [['x',1,0],['h',3,1.5],['b',12,0.5]], [['g',3,2.0],['s',8,0.9]],
@@ -487,7 +541,7 @@ const LEVELS=[
  {name:'Obsidian Citadel',desc:'16 waves · the final stand',hint:'Best 3-star weapon: Dragon',stars:3,gold:230,lives:10,hpBase:2.0,hpRamp:.27,deco:'crystal',
   pal:{g1:'#3d3a4f',g2:'#363347',pf:'#5d4a63',pe:'#3a2c40',dash:'rgba(255,170,110,.7)',pad:'#9a8fae',padE:'#665a7a'},
   path:[[-40,560],[160,560],[160,80],[400,80],[400,300],[240,300],[240,690]],
-  spots:[[80,140],[240,160],[320,160],[80,300],[320,240],[320,360],[80,480],[320,540],[160,640],[448,440]],
+  spots:[[80,140],[240,160],[320,160],[80,300],[320,240],[320,360],[80,480],[320,540],[160,640],[448,440],[200,240],[200,440]],
   waves:[
    [['b',16,0.5]], [['k',5,1.2],['f',12,0.38]], [['v',8,0.9],['s',8,0.85]], [['a',3,1.6],['t',8,1.0]],
    [['x',1,0],['v',6,0.9]], [['g',5,1.5],['k',6,1.0]], [['f',26,0.26],['a',3,1.5]],
@@ -593,7 +647,7 @@ const LEVELS=[
  {name:'Stormwind Crest',desc:'12 waves · high elevation',hint:'Frost slows the fast flying Void Wyrms',stars:3,gold:460,lives:10,hpBase:3.2,hpRamp:.28,deco:'pine',
   pal:{g1:'#2b3c40',g2:'#1a2628',pf:'#4f6a70',pe:'#0f1618',dash:'rgba(180,240,255,.8)',pad:'#6f9199',padE:'#2b3c40'},
   path:[[-40,500],[360,500],[360,120],[80,120],[80,690]],
-  spots:[[200,400],[200,220],[440,310],[440,190],[140,180],[280,180],[140,440],[280,440],[140,560],[280,560]],
+  spots:[[200,400],[200,220],[440,310],[440,190],[140,180],[280,180],[140,440],[280,440],[140,560],[280,560],[200,310],[340,260]],
   waves:[
    [['b',20,0.35]], [['y',4,1.2],['f',12,0.35]], [['w',8,0.7],['d',6,0.8]], [['u',4,1.4],['s',10,0.6]],
    [['y',6,1.0],['t',8,0.8]], [['r',8,0.8],['h',5,1.0]], [['c',2,4.5],['w',8,0.5]],
@@ -603,7 +657,7 @@ const LEVELS=[
  {name:'Ancient Vault',desc:'13 waves · ancestral treasure',hint:'Lava Spitters burn armored colossus targets',stars:3,gold:480,lives:10,hpBase:3.4,hpRamp:.30,deco:'forge',
   pal:{g1:'#473b30',g2:'#2d251e',pf:'#7a6654',pe:'#1b1612',dash:'rgba(240,210,150,.85)',pad:'#a18873',padE:'#473b30'},
   path:[[400,-40],[400,200],[160,200],[160,440],[400,440],[400,690]],
-  spots:[[260,100],[260,320],[80,320],[260,540],[330,140],[220,260],[100,380],[340,380],[340,500],[220,500]],
+  spots:[[260,100],[260,320],[80,320],[260,540],[330,140],[220,260],[100,380],[340,380],[340,500],[220,500],[140,200],[360,420]],
   waves:[
    [['b',22,0.32]], [['f',18,0.3],['w',6,0.8]], [['s',14,0.6]], [['d',10,0.7],['y',5,1.0]],
    [['u',4,1.3],['t',10,0.8]], [['r',8,0.7],['a',5,1.0]], [['c',2,4],['w',10,0.5]],
@@ -613,7 +667,7 @@ const LEVELS=[
  {name:'Deep Reactor',desc:'13 waves · unstable energy',hint:'Railguns pierce multiple enemies in straight corridors',stars:3,gold:500,lives:10,hpBase:3.6,hpRamp:.32,deco:'forge',
   pal:{g1:'#3b3b3c',g2:'#242424',pf:'#6a6a6a',pe:'#151515',dash:'rgba(220,220,220,.8)',pad:'#8e8e8e',padE:'#3b3b3c'},
   path:[[-40,80],[400,80],[400,540],[80,540],[80,690]],
-  spots:[[200,180],[200,360],[280,440],[320,240],[120,140],[280,140],[120,300],[280,300],[120,460],[340,460]],
+  spots:[[200,180],[200,360],[280,440],[320,240],[120,140],[280,140],[120,300],[280,300],[120,460],[340,460],[200,440],[340,180]],
   waves:[
    [['b',24,0.3]], [['w',8,0.7],['f',16,0.28]], [['d',12,0.6],['y',6,0.9]], [['u',5,1.2],['s',12,0.55]],
    [['t',12,0.7],['r',8,0.65]], [['c',2,3.8],['w',10,0.45]], [['y',10,0.7],['d',10,0.55]],
@@ -633,7 +687,7 @@ const LEVELS=[
  {name:'Whispering Ruins',desc:'14 waves · overgrown stones',hint:'Titan Cannons stun large colossus and bosses',stars:3,gold:550,lives:10,hpBase:4.0,hpRamp:.36,deco:'tree',
   pal:{g1:'#33402e',g2:'#20291d',pf:'#5d7355',pe:'#10150e',dash:'rgba(170,220,150,.85)',pad:'#819e76',padE:'#33402e'},
   path:[[-40,400],[400,400],[400,180],[100,180],[100,690]],
-  spots:[[220,280],[220,100],[220,500],[320,500],[140,100],[300,100],[160,320],[320,320],[160,460],[320,460]],
+  spots:[[220,280],[220,100],[220,500],[320,500],[140,100],[300,100],[160,320],[320,320],[160,460],[320,460],[140,220],[360,220]],
   waves:[
    [['b',28,0.25]], [['w',10,0.55],['f',22,0.22]], [['d',14,0.5],['y',10,0.65]], [['u',6,1.0],['s',14,0.45]],
    [['t',14,0.55],['r',12,0.5]], [['c',3,3.0],['w',12,0.38]], [['y',14,0.5],['d',12,0.45]],
@@ -643,7 +697,7 @@ const LEVELS=[
  {name:'Core Singularity',desc:'15 waves · collapse point',hint:'Nuke Mortars and EMP Surge deal with massive swarms',stars:3,gold:600,lives:10,hpBase:4.2,hpRamp:.38,deco:'forge',
   pal:{g1:'#291830',g2:'#190e1f',pf:'#543860',pe:'#0e0510',dash:'rgba(220,150,255,.85)',pad:'#7b5b8c',padE:'#291830'},
   path:[[240,-40],[240,180],[380,180],[380,460],[100,460],[100,690]],
-  spots:[[150,80],[310,80],[240,320],[240,560],[180,120],[300,120],[180,380],[300,380],[180,520],[300,520]],
+  spots:[[150,80],[310,80],[240,320],[240,560],[180,120],[300,120],[180,380],[300,380],[180,520],[300,520],[240,200],[80,320]],
   waves:[
    [['b',30,0.22]], [['f',24,0.2],['w',10,0.5]], [['s',18,0.45]], [['d',16,0.45],['y',12,0.55]],
    [['u',7,0.8],['t',16,0.5]], [['r',14,0.45],['h',8,0.7]], [['c',4,2.6],['w',14,0.35]],
@@ -666,7 +720,7 @@ const LEVELS=[
  {name:'Starlight Path',desc:'12 waves · astral roadway',hint:'Overcharge Tesla chains speed-buffed runners',stars:3,gold:700,lives:10,hpBase:4.8,hpRamp:.42,deco:'moon',
   pal:{g1:'#161b33',g2:'#0b0d1a',pf:'#3c4778',pe:'#04050a',dash:'rgba(200,220,255,.85)',pad:'#5767a6',padE:'#161b33'},
   path:[[240,-40],[240,200],[100,200],[100,480],[380,480],[380,690]],
-  spots:[[160,100],[320,100],[240,340],[240,580],[180,140],[300,140],[160,260],[320,260],[160,420],[320,420]],
+  spots:[[160,100],[320,100],[240,340],[240,580],[180,140],[300,140],[160,260],[320,260],[160,420],[320,420],[240,180],[240,500]],
   waves:[
    [['b',30,0.25]], [['f',20,0.22],['w',8,0.55]], [['s',15,0.45]], [['d',12,0.5],['y',8,0.7]],
    [['u',6,1.0],['t',12,0.6]], [['r',10,0.6],['h',6,0.8]], [['c',3,3.2],['w',12,0.4]],
@@ -676,7 +730,7 @@ const LEVELS=[
  {name:'Nebula Rift',desc:'13 waves · gas cloud pass',hint:'Refracting Prisms split laser damage across clusters',stars:3,gold:750,lives:10,hpBase:5.2,hpRamp:.45,deco:'crystal',
   pal:{g1:'#1e132c',g2:'#0f0917',pf:'#4a3366',pe:'#040206',dash:'rgba(230,170,255,.85)',pad:'#6b4f91',padE:'#1e132c'},
   path:[[-40,320],[400,320],[400,140],[120,140],[120,690]],
-  spots:[[240,220],[240,60],[240,420],[320,420],[160,100],[320,100],[160,260],[320,260],[160,520],[320,520]],
+  spots:[[240,220],[240,60],[240,420],[320,420],[160,100],[320,100],[160,260],[320,260],[160,520],[320,520],[80,340],[360,340]],
   waves:[
    [['b',32,0.22]], [['w',12,0.5],['f',22,0.2]], [['d',14,0.45],['y',10,0.6]], [['u',6,0.9],['s',14,0.4]],
    [['t',14,0.5],['r',12,0.45]], [['c',3,2.8],['w',12,0.35]], [['y',14,0.5],['d',12,0.4]],
@@ -686,7 +740,7 @@ const LEVELS=[
  {name:'Supernova Core',desc:'13 waves · extreme fusion',hint:'Lava Spitters inflict continuous burn on slow targets',stars:3,gold:800,lives:10,hpBase:5.6,hpRamp:.48,deco:'ember',
   pal:{g1:'#3a1313',g2:'#220808',pf:'#783030',pe:'#0c0202',dash:'rgba(255,130,130,.85)',pad:'#a14848',padE:'#3a1313'},
   path:[[240,-40],[240,140],[80,140],[80,460],[400,460],[400,690]],
-  spots:[[160,60],[320,60],[240,300],[240,560],[140,200],[340,200],[140,380],[340,380],[140,520],[340,520]],
+  spots:[[160,60],[320,60],[240,300],[240,560],[140,200],[340,200],[140,380],[340,380],[140,520],[340,520],[80,300],[400,300]],
   waves:[
    [['b',34,0.2]], [['f',24,0.18],['w',12,0.45]], [['s',18,0.4]], [['d',16,0.4],['y',12,0.5]],
    [['u',7,0.8],['t',16,0.45]], [['r',14,0.4],['h',8,0.6]], [['c',4,2.4],['w',14,0.3]],
@@ -696,7 +750,7 @@ const LEVELS=[
  {name:'Black Hole Horizon',desc:'14 waves · gravity well',hint:'Titan Cannons stun massive cosmic colossi',stars:3,gold:850,lives:10,hpBase:6.0,hpRamp:.50,deco:'moon',
   pal:{g1:'#0a0a0f',g2:'#020204',pf:'#242436',pe:'#000000',dash:'rgba(180,180,250,.7)',pad:'#3c3c52',padE:'#0a0a0f'},
   path:[[-40,120],[360,120],[360,420],[80,420],[80,690]],
-  spots:[[180,220],[180,320],[430,270],[200,520],[120,180],[280,180],[120,360],[280,360],[120,480],[280,480]],
+  spots:[[180,220],[180,320],[430,270],[200,520],[120,180],[280,180],[120,360],[280,360],[120,480],[280,480],[200,120],[200,600]],
   waves:[
    [['b',36,0.18]], [['w',14,0.4],['f',26,0.16]], [['d',18,0.36],['y',14,0.45]], [['u',8,0.7],['s',20,0.35]],
    [['t',18,0.4],['r',16,0.35]], [['c',4,2.2],['w',16,0.28]], [['y',18,0.4],['d',16,0.3]],
@@ -706,7 +760,7 @@ const LEVELS=[
  {name:'Pulsar Ridge',desc:'14 waves · stellar beacon',hint:'EMP Surge removes shields from shielded pulsar sentries',stars:3,gold:900,lives:10,hpBase:6.4,hpRamp:.52,deco:'storm',
   pal:{g1:'#122030',g2:'#08101a',pf:'#2c4a6b',pe:'#020406',dash:'rgba(100,220,255,.8)',pad:'#446e9c',padE:'#122030'},
   path:[[240,-40],[240,300],[80,300],[80,480],[400,480],[400,690]],
-  spots:[[140,180],[340,180],[240,400],[240,580],[160,240],[320,240],[160,360],[320,360],[160,540],[320,540]],
+  spots:[[140,180],[340,180],[240,400],[240,580],[160,240],[320,240],[160,360],[320,360],[160,540],[320,540],[80,300],[400,300]],
   waves:[
    [['b',38,0.16]], [['f',28,0.14],['w',14,0.38]], [['s',22,0.32]], [['d',20,0.32],['y',16,0.4]],
    [['u',9,0.6],['t',20,0.36]], [['r',18,0.32],['h',10,0.5]], [['c',5,1.8],['w',18,0.26]],
@@ -716,7 +770,7 @@ const LEVELS=[
  {name:'Dark Matter Field',desc:'14 waves · heavy particles',hint:'Railguns ignore dark matter armor entirely',stars:3,gold:950,lives:10,hpBase:6.8,hpRamp:.55,deco:'crystal',
   pal:{g1:'#1d152b',g2:'#0e0a17',pf:'#483669',pe:'#040206',dash:'rgba(200,160,255,.8)',pad:'#685294',padE:'#1d152b'},
   path:[[-40,520],[400,520],[400,240],[80,240],[80,690]],
-  spots:[[240,380],[240,140],[440,380],[440,140],[160,180],[320,180],[160,300],[320,300],[160,440],[320,440]],
+  spots:[[240,380],[240,140],[440,380],[440,140],[160,180],[320,180],[160,300],[320,300],[160,440],[320,440],[80,300],[400,500]],
   waves:[
    [['b',40,0.15]], [['w',16,0.35],['f',30,0.12]], [['d',22,0.3],['y',18,0.35]], [['u',10,0.5],['s',24,0.3]],
    [['t',22,0.32],['r',20,0.3]], [['c',5,1.6],['w',20,0.24]], [['y',22,0.32],['d',20,0.26]],
@@ -726,7 +780,7 @@ const LEVELS=[
  {name:'Celestial Gate',desc:'14 waves · galactic entry',hint:'Blizzard slow and damage keeps gate keys safe',stars:3,gold:1000,lives:10,hpBase:7.2,hpRamp:.58,deco:'storm',
   pal:{g1:'#1e2c3a',g2:'#0f161f',pf:'#485f78',pe:'#040608',dash:'rgba(180,220,255,.85)',pad:'#6884a3',padE:'#1e2c3a'},
   path:[[120,-40],[120,260],[360,260],[360,480],[120,480],[120,690]],
-  spots:[[240,140],[240,360],[240,580],[420,360],[180,200],[300,200],[180,420],[300,420],[180,540],[300,540]],
+  spots:[[240,140],[240,360],[240,580],[420,360],[180,200],[300,200],[180,420],[300,420],[180,540],[300,540],[420,140],[80,360]],
   waves:[
    [['b',42,0.14]], [['f',32,0.11],['w',18,0.32]], [['s',26,0.28]], [['d',24,0.28],['y',20,0.32]],
    [['u',11,0.45],['t',24,0.28]], [['r',22,0.28],['h',12,0.4]], [['c',6,1.4],['w',22,0.22]],
@@ -736,7 +790,7 @@ const LEVELS=[
  {name:'Ether Sanctum',desc:'14 waves · temple of spirits',hint:'Cluster Mortar shrapnels damage phantom phalanxes',stars:3,gold:1100,lives:10,hpBase:7.6,hpRamp:.60,deco:'moon',
   pal:{g1:'#2b1c3a',g2:'#150d1f',pf:'#5c3f78',pe:'#040206',dash:'rgba(220,180,255,.85)',pad:'#845fa6',padE:'#2b1c3a'},
   path:[[-40,180],[400,180],[400,460],[100,460],[100,690]],
-  spots:[[200,280],[200,80],[200,560],[320,560],[140,120],[320,120],[140,340],[320,340],[140,500],[320,500]],
+  spots:[[200,280],[200,80],[200,560],[320,560],[140,120],[320,120],[140,340],[320,340],[140,500],[320,500],[80,280],[360,280]],
   waves:[
    [['b',44,0.12]], [['w',20,0.28],['f',34,0.1]], [['d',26,0.25],['y',22,0.28]], [['u',12,0.4],['s',28,0.25]],
    [['t',26,0.25],['r',24,0.25]], [['c',6,1.3],['w',24,0.2]], [['y',26,0.25],['d',24,0.22]],
@@ -1378,7 +1432,7 @@ const G={
     this.particles=this.particles.filter(p=>p.t<p.max && p.x>-20 && p.x<LW+20 && p.y>-20 && p.y<LH+20);
 
     if(this.inWave&&this.qi>=this.spawnQ.length&&this.enemies.length===0){
-      const done=this.waveIdx+1, bonus=15+3*done;
+      const done=this.waveIdx+1, bonus=Math.round(15+3*done+this.li*4);
       this.gold+=bonus; this.inWave=false; this.waveIdx++;
       if(this.waveIdx>=this.level.waves.length){this.end(true)}
       else{
@@ -1518,22 +1572,53 @@ function refreshDock(){
 }
 function makeBuildButtons(){
   const wrap=el('bopts'); wrap.innerHTML='';
+  const hideTips=()=>{wrap.querySelectorAll('.tip.show').forEach(t=>t.classList.remove('show'))};
+
   for(const k in TOWER_TYPES){
     const t=TOWER_TYPES[k], b=document.createElement('button');
     const locked=(t.unlock||0)>G.li;
     b.className='bopt'; b.dataset.type=k;
+    const lv0=t.lv[0];
     if(locked){
       b.dataset.locked='1'; b.disabled=true;
       b.innerHTML=`<span class="ticon" style="background:${t.color}"></span>🔒 ${t.name}<span class="sub">Map ${(t.unlock||0)+1}+</span>`;
     }else{
+      const tip=document.createElement('div');
+      tip.className='tip';
+      // build stat line from tower properties
+      let stats=`DMG ${lv0.dmg} · RNG ${lv0.range} · SPD ${lv0.rate.toFixed(1)}/s`;
+      if(t.splash) stats+=` · Splash ${t.splash}`;
+      if(t.chain) stats+=` · Chain ×${t.chain[0]}`;
+      if(t.slow) stats+=` · Slow ${Math.round(t.slow[0]*100)}%`;
+      if(t.burn) stats+=` · Burn ${t.burn[0]}/s`;
+      const tipName=document.createElement('b');
+      tipName.textContent=`${t.name} · ${t.sub}`;
+      const tipStat=document.createElement('div');
+      tipStat.className='stat'; tipStat.textContent=stats;
+      const tipDesc=document.createElement('div');
+      tipDesc.className='desc'; tipDesc.textContent=t.desc;
+      tip.append(tipName,tipStat,tipDesc);
       b.innerHTML=`<span class="ticon" style="background:${t.color}"></span>${t.name}<span class="sub">${t.sub}</span><span class="cost">●${t.cost}</span>`;
-      b.addEventListener('click',()=>buildTower(k));
+      b.appendChild(tip);
+      // tap toggles tip on mobile; second tap builds
+      b.addEventListener('click',(e)=>{
+        e.stopPropagation();
+        const wasOpen=tip.classList.contains('show');
+        hideTips();
+        if(!wasOpen){tip.classList.add('show');A.sfx('click')}
+        else{buildTower(k)}
+      });
+      // hold also shows tip
+      let holdTimer=null;
+      b.addEventListener('pointerdown',()=>{holdTimer=setTimeout(()=>{hideTips();tip.classList.add('show')},400)});
+      b.addEventListener('pointerup',()=>clearTimeout(holdTimer));
+      b.addEventListener('pointerleave',()=>clearTimeout(holdTimer));
     }
     wrap.appendChild(b);
   }
   const x=document.createElement('button');
   x.className='bopt xbtn'; x.textContent='✕';
-  x.addEventListener('click',()=>select(null));
+  x.addEventListener('click',()=>{hideTips();select(null)});
   wrap.appendChild(x);
 }
 function buildTower(type){
@@ -1748,11 +1833,49 @@ function applyCheatCode(code) {
     toast(__cheatAuregaCool ? 'Auregacool: Tap anywhere to place new pads!' : 'Auregacool disabled');
     saveRun();
     return true;
+  } else if (cleanCode === 'aurega50k') {
+    G.gold += 50000;
+    toast('aurega50k: +50,000 gold!');
+    refreshDock();
+    saveRun();
+    return true;
   }
   return false;
 }
 
+/* --- inline cheat input (replaces native prompt) --- */
+const __cheatOverlay = el('cheatOverlay');
+const __cheatInput   = el('cheatInput');
+
+function showCheatInput() {
+  __cheatInput.value = '';
+  __cheatOverlay.classList.add('show');
+  setTimeout(() => __cheatInput.focus(), 50);
+}
+function hideCheatInput() {
+  __cheatOverlay.classList.remove('show');
+  __cheatInput.blur();
+}
+function submitCheat() {
+  const code = __cheatInput.value;
+  if (code && !applyCheatCode(code)) {
+    toast('Invalid cheat code');
+  }
+  hideCheatInput();
+}
+
+el('cheatSubmit').addEventListener('click', submitCheat);
+el('cheatCancel').addEventListener('click', hideCheatInput);
+__cheatOverlay.addEventListener('click', (e) => { if (e.target === __cheatOverlay) hideCheatInput(); });
+__cheatInput.addEventListener('keydown', (e) => {
+  e.stopPropagation(); // prevent game key handler from eating the input
+  if (e.key === 'Enter') submitCheat();
+  if (e.key === 'Escape') hideCheatInput();
+});
+
+/* --- desktop keyboard cheat buffer --- */
 document.addEventListener('keydown', (ev) => {
+  if (__cheatOverlay.classList.contains('show')) return; // don't capture when overlay open
   // Enter checks the buffer
   if (ev.key === 'Enter'){
     if (applyCheatCode(__cheatBuf)) {
@@ -1771,29 +1894,18 @@ document.addEventListener('keydown', (ev) => {
   if (__cheatBuf.length > 32) __cheatBuf = __cheatBuf.slice(-32);
 });
 
-// Mobile tap listener for cheats
+/* --- mobile tap-to-cheat (canvas / stage area, 5 rapid taps) --- */
 let logoTaps = 0;
 let goldTaps = 0;
+let stageTapCount = 0;
+let stageTapTimer = null;
 
-function promptCheat() {
-  const code = prompt("Enter Cheat Code:");
-  if (code) {
-    if (!applyCheatCode(code)) {
-      toast("Invalid cheat code");
-    }
-  }
-}
-
-// Bind taps once DOM is loaded / script evaluates
 const logo = el('cannonArt');
 if (logo) {
   logo.style.cursor = 'pointer';
   logo.addEventListener('click', () => {
     logoTaps++;
-    if (logoTaps >= 5) {
-      logoTaps = 0;
-      promptCheat();
-    }
+    if (logoTaps >= 5) { logoTaps = 0; showCheatInput(); }
   });
 }
 
@@ -1802,9 +1914,23 @@ if (goldChip) {
   goldChip.style.cursor = 'pointer';
   goldChip.addEventListener('click', () => {
     goldTaps++;
-    if (goldTaps >= 5) {
-      goldTaps = 0;
-      promptCheat();
+    if (goldTaps >= 5) { goldTaps = 0; showCheatInput(); }
+  });
+}
+
+// Canvas / stage area: 5 taps within 3 seconds opens cheat input
+const stage = el('stage');
+if (stage) {
+  stage.addEventListener('click', (e) => {
+    // ignore taps on dock, hud, sheets, overlays
+    if (e.target.closest('#dock') || e.target.closest('#hud') || e.target.closest('.sheet') || e.target.closest('#cheatOverlay') || e.target.closest('#endScr')) return;
+    stageTapCount++;
+    clearTimeout(stageTapTimer);
+    stageTapTimer = setTimeout(() => { stageTapCount = 0; }, 3000);
+    if (stageTapCount >= 5) {
+      stageTapCount = 0;
+      clearTimeout(stageTapTimer);
+      showCheatInput();
     }
   });
 }
