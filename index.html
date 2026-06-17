@@ -414,79 +414,79 @@ const E_TYPES={
   c:{r:28,hp:1900,sp:20,gold:150,lives:6,armor:18,split:'u',splitN:2,c1:'#3e4a5e',c2:'#1e2633'} // Colossus
 };
 const TOWER_TYPES={
-  cannon:{name:'Cannon',sub:'splash',cost:50,up:[45,75,120,180],splash:30,spd:340,color:'#5f739c',
+  cannon:{name:'Cannon',sub:'splash',cost:50,up:[45,75,120,180],splash:32,spd:340,color:'#5f739c',
     desc:'Explosive shells deal splash damage to groups of enemies.',
-    lv:[{dmg:12,range:95,rate:1.1},{dmg:20,range:106,rate:1.3},{dmg:34,range:118,rate:1.55},{dmg:54,range:130,rate:1.8},{dmg:80,range:140,rate:2.0}]},
+    lv:[{dmg:15,range:100,rate:1.2},{dmg:25,range:112,rate:1.4},{dmg:42,range:124,rate:1.65},{dmg:65,range:136,rate:1.9},{dmg:95,range:148,rate:2.15}],
   bolt:{name:'Archer',sub:'rapid',cost:40,up:[35,60,95,140],splash:0,spd:520,color:'#d98e2b',
     desc:'Fast-firing arrows. Great DPS and cheap to deploy early.',
-    lv:[{dmg:5,range:108,rate:2.6},{dmg:8,range:118,rate:3.1},{dmg:13,range:128,rate:3.6},{dmg:20,range:138,rate:4.2},{dmg:30,range:148,rate:4.8}]},
+    lv:[{dmg:6,range:112,rate:2.8},{dmg:10,range:122,rate:3.3},{dmg:16,range:132,rate:3.8},{dmg:24,range:142,rate:4.4},{dmg:36,range:152,rate:5.0}]},
   frost:{name:'Frost',sub:'slows',cost:45,up:[40,70,110,160],splash:0,spd:300,color:'#4ecbe8',
     desc:'Chills enemies, slowing their movement speed significantly.',
     slow:[.35,.45,.55,.65,.75],slowDur:1.6,
-    lv:[{dmg:4,range:90,rate:1.0},{dmg:6,range:98,rate:1.2},{dmg:9,range:106,rate:1.4},{dmg:13,range:114,rate:1.6},{dmg:18,range:122,rate:1.8}]},
+    lv:[{dmg:5,range:95,rate:1.1},{dmg:8,range:104,rate:1.3},{dmg:12,range:113,rate:1.5},{dmg:17,range:122,rate:1.7},{dmg:24,range:130,rate:1.95}]}},
   musket:{name:'Musket',sub:'snipe',cost:70,up:[60,100,160,240],splash:0,spd:760,color:'#8d6b4a',unlock:1,
     desc:'Long-range sniper bullets. High damage per shot, slow fire rate.',
-    lv:[{dmg:34,range:150,rate:0.45},{dmg:56,range:165,rate:0.5},{dmg:90,range:180,rate:0.55},{dmg:145,range:195,rate:0.6},{dmg:220,range:210,rate:0.65}]},
+    lv:[{dmg:40,range:158,rate:0.48},{dmg:65,range:172,rate:0.53},{dmg:105,range:188,rate:0.58},{dmg:170,range:204,rate:0.63},{dmg:255,range:220,rate:0.68}]},
   tesla:{name:'Tesla',sub:'chain',cost:65,up:[55,90,145,200],splash:0,spd:600,color:'#e8d44e',unlock:2,
     desc:'Lightning chains to multiple nearby enemies. Great vs groups.',
     chain:[2,3,4,5,6],chainPct:0.6,chainR:75,
-    lv:[{dmg:9,range:100,rate:1.5},{dmg:14,range:110,rate:1.7},{dmg:22,range:120,rate:1.9},{dmg:34,range:130,rate:2.1},{dmg:50,range:140,rate:2.3}]},
+    lv:[{dmg:10,range:106,rate:1.6},{dmg:16,range:116,rate:1.8},{dmg:25,range:126,rate:2.0},{dmg:38,range:136,rate:2.2},{dmg:56,range:146,rate:2.45}]},
   dragon:{name:'Dragon',sub:'burn',cost:90,up:[80,130,200,280],splash:26,spd:380,color:'#e0563c',unlock:3,
     desc:'Breathes fire that burns enemies over time. Splash + DoT.',
     burn:[6,11,18,30,45],burnDur:2.5,
-    lv:[{dmg:18,range:105,rate:0.9},{dmg:30,range:115,rate:1.0},{dmg:48,range:125,rate:1.1},{dmg:75,range:135,rate:1.2},{dmg:110,range:145,rate:1.3}]},
+    lv:[{dmg:22,range:110,rate:0.95},{dmg:36,range:120,rate:1.05},{dmg:56,range:132,rate:1.15},{dmg:88,range:142,rate:1.25},{dmg:130,range:152,rate:1.35}]},
   mortar:{name:'Mortar',sub:'siege',cost:85,up:[75,120,185,260],splash:55,spd:240,color:'#90a86a',unlock:4,
     desc:'Hurls explosive shells with huge splash radius. Devastates clusters.',
-    lv:[{dmg:32,range:135,rate:0.5},{dmg:52,range:148,rate:0.55},{dmg:80,range:160,rate:0.6},{dmg:120,range:172,rate:0.65},{dmg:170,range:184,rate:0.7}]},
+    lv:[{dmg:38,range:140,rate:0.52},{dmg:62,range:154,rate:0.57},{dmg:95,range:168,rate:0.62},{dmg:140,range:180,rate:0.67},{dmg:198,range:192,rate:0.72}]},
   prism:{name:'Prism',sub:'laser',cost:110,up:[95,150,220,300],splash:0,spd:980,color:'#e87ad8',unlock:5,
     desc:'Instant laser beam. Extremely fast attack rate, no travel time.',
-    lv:[{dmg:15,range:125,rate:3.0},{dmg:22,range:135,rate:3.4},{dmg:32,range:145,rate:3.8},{dmg:46,range:155,rate:4.2},{dmg:65,range:165,rate:4.6}]},
-  auregazoka:{name:'Aurega Zuka',sub:'hero',cost:1000,up:[800,1200,1800,2500],splash:65,spd:850,color:'#ffc94d',
-    desc:'Ultimate hero tower. Massive damage, huge range, devastating splash.',
-    lv:[{dmg:150,range:160,rate:2.0},{dmg:220,range:175,rate:2.2},{dmg:320,range:190,rate:2.4},{dmg:480,range:205,rate:2.6},{dmg:750,range:220,rate:2.8}]},
+    lv:[{dmg:18,range:130,rate:3.2},{dmg:26,range:140,rate:3.6},{dmg:38,range:150,rate:4.0},{dmg:54,range:160,rate:4.4},{dmg:76,range:170,rate:4.8}]},
+  auregazoka:{name:'Aurega Zuka',sub:'hero',cost:1500,up:[1200,1800,2600,3500],splash:70,spd:880,color:'#ffc94d',
+    desc:'Ultimate hero tower. Massive damage, huge range, devastating splash. The key to victory!',
+    lv:[{dmg:220,range:170,rate:2.2},{dmg:330,range:185,rate:2.4},{dmg:480,range:200,rate:2.6},{dmg:720,range:215,rate:2.8},{dmg:1100,range:230,rate:3.0}]},
 };
 const TOWER_BRANCHES={
   cannon:{
-    A:{name:'Cluster Bomber',desc:'Splits shell into 3 explosive cluster bombs on hit',cost:180,dmg:80,range:140,rate:1.8,splash:38},
-    B:{name:'Titan Cannon',desc:'Massive single shell that stuns for 1.2s & shreds armor',cost:200,dmg:140,range:150,rate:1.4,stun:1.2}
+    A:{name:'Cluster Bomber',desc:'Splits shell into 3 explosive cluster bombs on hit',cost:200,dmg:95,range:148,rate:2.0,splash:40},
+    B:{name:'Titan Cannon',desc:'Massive single shell that stuns for 1.2s & shreds armor',cost:220,dmg:165,range:158,rate:1.5,stun:1.2}
   },
   bolt:{
-    A:{name:'Storm Ranger',desc:'Incredibly rapid firing speed with stack poison damage',cost:140,dmg:32,range:150,rate:5.5,poison:15},
-    B:{name:'Ballista',desc:'Fires heavy bolts that pierce through up to 4 foes',cost:150,dmg:85,range:160,rate:2.2,pierce:4}
+    A:{name:'Storm Ranger',desc:'Incredibly rapid firing speed with stack poison damage',cost:160,dmg:38,range:158,rate:6.0,poison:18},
+    B:{name:'Ballista',desc:'Fires heavy bolts that pierce through up to 4 foes',cost:170,dmg:100,range:168,rate:2.4,pierce:4}
   },
   frost:{
-    A:{name:'Blizzard Core',desc:'Pulsates freezing blizzard dealing damage & slowing 75%',cost:160,dmg:20,range:125,rate:2.0,slow:0.75,aura:true},
-    B:{name:'Permafrost',desc:'Projectiles have 20% chance to freeze foes solid for 1.5s',cost:180,dmg:28,range:120,rate:1.8,freeze:0.20}
+    A:{name:'Blizzard Core',desc:'Pulsates freezing blizzard dealing damage & slowing 80%',cost:180,dmg:24,range:130,rate:2.2,slow:0.80,aura:true},
+    B:{name:'Permafrost',desc:'Projectiles have 25% chance to freeze foes solid for 1.5s',cost:200,dmg:34,range:126,rate:2.0,freeze:0.25}
   },
   musket:{
-    A:{name:'Hyper-Railgun',desc:'Fires electric rail beam piercing all foes instantly',cost:220,dmg:240,range:220,rate:0.7,rail:true},
-    B:{name:'Deadeye Sniper',desc:'Extreme range sniper with 25% chance to land 4x Crit',cost:240,dmg:180,range:260,rate:0.65,crit:0.25}
+    A:{name:'Hyper-Railgun',desc:'Fires electric rail beam piercing all foes instantly',cost:250,dmg:280,range:230,rate:0.72,rail:true},
+    B:{name:'Deadeye Sniper',desc:'Extreme range sniper with 30% chance to land 4x Crit',cost:270,dmg:210,range:270,rate:0.68,crit:0.30}
   },
   tesla:{
-    A:{name:'Overcharge',desc:'Chains to 8 targets, adding short micro-stun on hit',cost:200,dmg:48,range:140,rate:2.4,chain:8},
-    B:{name:'EMP Surge',desc:'Zaps pop energy shield barriers & purge haste speed buffs',cost:210,dmg:60,range:135,rate:2.0,emp:true}
+    A:{name:'Overcharge',desc:'Chains to 8 targets, adding short micro-stun on hit',cost:220,dmg:56,range:148,rate:2.6,chain:8},
+    B:{name:'EMP Surge',desc:'Zaps pop energy shield barriers & purge haste speed buffs',cost:230,dmg:70,range:142,rate:2.2,emp:true}
   },
   dragon:{
-    A:{name:'Lava Spitter',desc:'Spits magma pools on road that burn all foes walking on it',cost:280,dmg:110,range:145,rate:1.3,lava:true},
+    A:{name:'Lava Spitter',desc:'Spits magma pools on road that burn all foes walking on it',cost:310,dmg:130,range:152,rate:1.35,lava:true},
     B:{name:'Inferno Cone',desc:'Spews rapid flame projectiles resembling a fire stream',cost:260,dmg:42,range:120,rate:4.5}
   },
   mortar:{
-    A:{name:'Nuke Silo',desc:'Gigantic blast leaving fallout that poisons & slows',cost:270,dmg:190,range:185,rate:0.7,splash:70,nuke:true},
-    B:{name:'Cluster Mortar',desc:'Shell splits into 5 secondary mini-mortar rounds',cost:280,dmg:130,range:180,rate:0.75,splash:50,cluster:true}
+    A:{name:'Nuke Silo',desc:'Gigantic blast leaving fallout that poisons & slows',cost:300,dmg:220,range:192,rate:0.72,splash:72,nuke:true},
+    B:{name:'Cluster Mortar',desc:'Shell splits into 5 secondary mini-mortar rounds',cost:310,dmg:150,range:188,rate:0.78,splash:54,cluster:true}
   },
   prism:{
-    A:{name:'Refractor',desc:'Beam splits on hit, striking target & 4 nearby foes',cost:300,dmg:62,range:165,rate:4.5,split:4},
-    B:{name:'Quantum Melter',desc:'Damage increases up to +400% when focusing same target',cost:320,dmg:35,range:175,rate:5.0,melt:true}
+    A:{name:'Refractor',desc:'Beam splits on hit, striking target & 4 nearby foes',cost:330,dmg:72,range:172,rate:4.8,split:4},
+    B:{name:'Quantum Melter',desc:'Damage increases up to +400% when focusing same target',cost:350,dmg:42,range:180,rate:5.2,melt:true}
   },
   auregazoka:{
-    A:{name:'Aurega Overlord',desc:'Fires cosmic meteors that leave large burning starfire pools',cost:1500,dmg:1100,range:240,rate:3.2,lava:true,splash:80},
-    B:{name:'Void Obliterator',desc:'Fires black hole spheres creating a massive gravity zone',cost:1800,dmg:1600,range:250,rate:2.6,fallout:true,splash:90}
+    A:{name:'Aurega Overlord',desc:'Fires cosmic meteors that leave large burning starfire pools',cost:2000,dmg:1400,range:250,rate:3.4,lava:true,splash:85},
+    B:{name:'Void Obliterator',desc:'Fires black hole spheres creating a massive gravity zone',cost:2400,dmg:2000,range:260,rate:2.8,fallout:true,splash:95}
   }
 };
 const SELL_PCT=0.7;
 const LEVELS=[
  // WORLD 1 - Classic
- {name:'Meadow Run',desc:'10 waves · gentle start',hint:'Best 3-star weapon: Cannon',stars:1,gold:150,lives:15,hpBase:1,hpRamp:.13,deco:'tree',
+ {name:'Meadow Run',desc:'10 waves · gentle start',hint:'Archer for early runners, Cannon splash for grouped tanks — upgrade both to Lv3',stars:1,gold:150,lives:15,hpBase:1.3,hpRamp:.16,deco:'tree',
   pal:{g1:'#7ec850',g2:'#76bf49',pf:'#e7b876',pe:'#b98c4f',dash:'rgba(246,217,160,.8)',pad:'#cfc3a0',padE:'#a89a72'},
   path:[[-40,80],[400,80],[400,220],[80,220],[80,360],[400,360],[400,500],[80,500],[80,690]],
   spots:[[120,150],[240,150],[348,150],[136,290],[248,290],[360,290],[120,430],[240,430],[348,430],[200,570],[320,570]],
@@ -495,20 +495,20 @@ const LEVELS=[
    [['f',14,0.5]], [['s',4,1.5],['b',8,0.65]], [['t',5,1.4],['f',8,0.5]], [['s',6,1.2],['f',10,0.45]],
    [['b',18,0.45],['t',5,1.2]], [['x',1,0],['t',6,1.2],['f',10,0.4]],
   ]},
- {name:'Dusty Dunes',desc:'12 waves · twisting trail',hint:'Best 3-star weapon: Archer',stars:2,gold:150,lives:13,hpBase:1.1,hpRamp:.16,deco:'cactus',
+ {name:'Dusty Dunes',desc:'12 waves · twisting trail',hint:'Frost slows runners on tight turns, Archer picks off stragglers — place at corners',stars:2,gold:150,lives:13,hpBase:1.4,hpRamp:.19,deco:'cactus',
   pal:{g1:'#d8c27a',g2:'#cfb86e',pf:'#c98850',pe:'#96603a',dash:'rgba(240,205,160,.85)',pad:'#efe1b0',padE:'#b3a06e'},
   path:[[240,-40],[240,140],[80,140],[80,520],[240,520],[240,300],[400,300],[400,690]],
-  spots:[[100,60],[330,80],[160,200],[310,225],[160,330],[310,390],[160,460],[310,560],[448,440],[90,600],[240,140],[80,400]],
+  spots:[[100,60],[330,80],[160,200],[310,225],[160,330],[310,390],[160,460],[310,560],[448,440],[90,600],[310,140],[42,460]],
   waves:[
    [['b',10,0.85]], [['b',8,0.7],['f',6,0.5]], [['s',4,1.4],['b',8,0.65]], [['t',4,1.5],['f',8,0.5]],
    [['h',2,2.0],['b',12,0.6]], [['f',16,0.42]], [['s',6,1.1],['h',2,2.0],['b',10,0.6]],
    [['t',6,1.2],['f',10,0.45]], [['h',3,1.6],['s',8,1.0]], [['b',20,0.4],['f',10,0.4]],
    [['t',8,1.1],['h',3,1.5],['f',8,0.45]], [['x',1,0],['s',6,1.0],['h',2,1.8],['f',10,0.38]],
   ]},
- {name:'Frostpeak Pass',desc:'13 waves · the long siege',hint:'Best 3-star weapon: Frost',stars:3,gold:170,lives:12,hpBase:1.3,hpRamp:.19,deco:'pine',
+ {name:'Frostpeak Pass',desc:'13 waves · the long siege',hint:'Frost at every turn slows the long path, Cannon splash shreds clumped tanks',stars:3,gold:170,lives:12,hpBase:1.7,hpRamp:.22,deco:'pine',
   pal:{g1:'#cfe3ec',g2:'#c2d9e4',pf:'#b0906b',pe:'#7e6448',dash:'rgba(238,222,200,.85)',pad:'#e9f2f6',padE:'#93b2c2'},
   path:[[-40,60],[400,60],[400,180],[80,180],[80,300],[400,300],[400,420],[80,420],[80,540],[400,540],[400,690]],
-  spots:[[140,120],[260,120],[220,240],[340,240],[140,360],[260,360],[220,480],[340,480],[100,240],[360,120],[100,480],[360,360]],
+  spots:[[140,120],[260,120],[220,240],[340,240],[140,360],[260,360],[220,480],[340,480],[42,240],[360,120],[42,480],[360,360]],
   waves:[
    [['b',12,0.7]], [['f',12,0.45]], [['s',5,1.2],['b',10,0.6]], [['t',5,1.3],['f',8,0.5]],
    [['h',3,1.6],['s',6,1.1]], [['x',1,0],['t',4,1.4]], [['f',18,0.38],['h',2,1.8]],
@@ -516,10 +516,10 @@ const LEVELS=[
    [['t',8,1.0],['r',5,1.2],['s',6,0.95]], [['f',20,0.32],['h',4,1.4],['s',6,1.0]],
    [['x',3,5],['r',5,1.2],['h',3,1.5]],
   ]},
- {name:'Ember Wastes',desc:'14 waves · veterans only',hint:'Best 3-star weapon: Musket',stars:3,gold:190,lives:10,hpBase:1.5,hpRamp:.22,deco:'ember',
+ {name:'Ember Wastes',desc:'14 waves · veterans only',hint:'Cannon splash for armored+knight waves, Frost at path turns — save for boss wave',stars:3,gold:190,lives:10,hpBase:2.0,hpRamp:.26,deco:'ember',
   pal:{g1:'#a05c40',g2:'#965237',pf:'#52414c',pe:'#352a33',dash:'rgba(255,160,90,.7)',pad:'#d8b59a',padE:'#8a5f4a'},
   path:[[-40,580],[400,580],[400,80],[80,80],[80,460],[300,460],[300,200],[180,200],[180,690]],
-  spots:[[130,520],[340,520],[448,330],[140,140],[240,140],[340,140],[130,300],[240,300],[350,330],[240,520],[80,200],[360,440],[80,440]],
+  spots:[[130,520],[340,520],[448,330],[140,140],[240,140],[340,140],[130,300],[240,300],[350,330],[240,520],[42,200],[360,440],[42,440]],
   waves:[
    [['b',14,0.6]], [['f',14,0.4]], [['s',7,1.0],['b',12,0.55]], [['h',3,1.5],['r',5,1.2]],
    [['f',20,0.35],['s',6,1.0]], [['x',1,0],['h',3,1.5],['b',12,0.5]], [['g',3,2.0],['s',8,0.9]],
@@ -527,7 +527,7 @@ const LEVELS=[
    [['h',5,1.2],['r',6,1.1],['f',10,0.4]], [['s',10,0.8],['x',1,0],['r',5,1.1]],
    [['g',5,1.6],['f',20,0.3],['k',4,1.3],['h',4,1.2]], [['x',4,4.5],['g',4,1.6],['h',5,1.1]],
   ]},
- {name:'Twilight Marsh',desc:'15 waves · the haunted bog',hint:'Best 3-star weapon: Tesla',stars:3,gold:210,lives:10,hpBase:1.75,hpRamp:.24,deco:'swamp',
+ {name:'Twilight Marsh',desc:'15 waves · the haunted bog',hint:'Frost slows haste runners, Cannon handles ghost-knight mixed waves — tight path helps',stars:3,gold:210,lives:10,hpBase:2.3,hpRamp:.28,deco:'swamp',
   pal:{g1:'#4f7d68',g2:'#477260',pf:'#8a6f5a',pe:'#5d4a3c',dash:'rgba(206,232,200,.75)',pad:'#b8c9a8',padE:'#7d9070'},
   path:[[160,-40],[160,160],[400,160],[400,320],[80,320],[80,480],[320,480],[320,690]],
   spots:[[90,80],[240,90],[330,240],[230,240],[90,240],[160,400],[250,400],[400,440],[400,560],[240,560],[90,580]],
@@ -538,7 +538,7 @@ const LEVELS=[
    [['g',5,1.6],['v',6,0.9]], [['x',2,5],['h',4,1.3]], [['k',8,0.9],['a',3,1.5],['s',8,0.85]],
    [['f',24,0.28],['v',8,0.85],['h',4,1.2]], [['x',3,4.5],['k',6,1.0],['a',3,1.4]],
   ]},
- {name:'Obsidian Citadel',desc:'16 waves · the final stand',hint:'Best 3-star weapon: Dragon',stars:3,gold:230,lives:10,hpBase:2.0,hpRamp:.27,deco:'crystal',
+ {name:'Obsidian Citadel',desc:'16 waves · the final stand',hint:'Cannon splash at path junctions for split pushes, Frost on straight sections',stars:3,gold:230,lives:10,hpBase:2.6,hpRamp:.31,deco:'crystal',
   pal:{g1:'#3d3a4f',g2:'#363347',pf:'#5d4a63',pe:'#3a2c40',dash:'rgba(255,170,110,.7)',pad:'#9a8fae',padE:'#665a7a'},
   path:[[-40,560],[160,560],[160,80],[400,80],[400,300],[240,300],[240,690]],
   spots:[[80,140],[240,160],[320,160],[80,300],[320,240],[320,360],[80,480],[320,540],[160,640],[448,440],[200,240],[200,440]],
@@ -550,10 +550,10 @@ const LEVELS=[
    [['x',3,4],['v',8,0.8]], [['t',12,0.8],['h',5,1.0],['a',4,1.2],['s',8,0.75]],
    [['z',2,9],['x',2,6],['a',4,1.2],['h',4,1.1]],
   ]},
- {name:'Sunken Harbor',desc:'17 waves · tide-swept lanes',hint:'Best 3-star weapon: Mortar',stars:3,gold:250,lives:10,hpBase:2.2,hpRamp:.29,deco:'swamp',
+ {name:'Sunken Harbor',desc:'17 waves · tide-swept lanes',hint:'Frost at every turn slows everything, Cannon at the 3-way junction catches all lanes',stars:3,gold:250,lives:10,hpBase:2.9,hpRamp:.34,deco:'swamp',
   pal:{g1:'#3e657b',g2:'#35596c',pf:'#7c634f',pe:'#4e4037',dash:'rgba(214,235,255,.7)',pad:'#b8d0da',padE:'#7a95a0'},
   path:[[-40,120],[110,120],[110,460],[320,460],[320,240],[400,240],[400,690]],
-  spots:[[68,70],[210,82],[350,82],[78,210],[210,250],[350,300],[78,380],[210,420],[350,520],[220,590],[438,180]],
+  spots:[[68,70],[210,82],[350,82],[42,210],[210,250],[448,300],[42,380],[210,420],[350,520],[220,590],[438,180]],
   waves:[
    [['b',16,0.45]], [['f',16,0.35],['k',4,1.0]], [['s',8,0.8],['b',10,0.5]], [['a',3,1.4],['h',3,1.5]],
    [['v',8,0.9],['f',12,0.34]], [['r',6,1.0],['k',6,0.9]], [['g',5,1.3],['s',8,0.75]], [['x',2,5],['a',4,1.2]],
@@ -562,10 +562,10 @@ const LEVELS=[
    [['a',5,1.0],['k',8,0.8],['v',10,0.75]], [['x',3,4],['z',2,6],['g',6,1.0],['h',4,1.0]],
    [['x',4,3.5],['z',2,5.5],['r',8,0.8]],
   ]},
- {name:'Aurora Spire',desc:'18 waves · sky-bastion siege',hint:'Best 3-star weapon: Prism',stars:3,gold:275,lives:10,hpBase:2.45,hpRamp:.31,deco:'crystal',
+ {name:'Aurora Spire',desc:'18 waves · sky-bastion siege',hint:'Long winding path — Frost at every turn, Cannon at center crossroads for max splash coverage',stars:3,gold:275,lives:10,hpBase:3.2,hpRamp:.36,deco:'crystal',
   pal:{g1:'#45607d',g2:'#394c68',pf:'#826f92',pe:'#4e4462',dash:'rgba(255,230,255,.72)',pad:'#b9b3da',padE:'#756c96'},
   path:[[240,-40],[240,120],[80,120],[80,280],[400,280],[400,440],[160,440],[160,620],[400,620],[400,690]],
-  spots:[[92,70],[182,70],[308,70],[386,162],[96,186],[196,220],[324,220],[96,350],[224,350],[350,350],[96,520],[230,520],[340,520]],
+  spots:[[92,70],[182,70],[308,70],[386,162],[42,186],[196,220],[324,220],[96,350],[224,350],[350,350],[96,520],[230,520],[340,520]],
   waves:[
    [['b',16,0.42]], [['f',18,0.32],['s',6,0.75]], [['k',8,0.8],['a',4,1.0]], [['v',8,0.75],['h',4,1.0]],
    [['r',7,0.95],['g',5,1.2]], [['x',2,4.5],['t',10,0.85]], [['z',2,6],['s',10,0.7]], [['a',5,0.95],['v',10,0.7]],
@@ -575,10 +575,10 @@ const LEVELS=[
    [['x',4,3.5],['z',2,4.8],['g',8,0.9]], [['x',4,3.2],['z',2,4.5],['r',8,0.8],['h',5,0.9]],
    [['z',3,4.5],['x',4,3.2],['a',5,0.9],['v',10,0.6]],
   ]},
- {name:'Eclipse Throne',desc:'19 waves · the true last stand',hint:'Best 3-star weapon: Prism + Tesla',stars:3,gold:300,lives:10,hpBase:2.7,hpRamp:.34,deco:'crystal',
+ {name:'Eclipse Throne',desc:'19 waves · the true last stand',hint:'Cannon for boss-heavy late waves, Frost slows haste + regen combos — upgrade Cannon to Lv5',stars:3,gold:300,lives:10,hpBase:3.5,hpRamp:.40,deco:'crystal',
   pal:{g1:'#2e3558',g2:'#242a45',pf:'#67516f',pe:'#3a2c40',dash:'rgba(255,220,190,.72)',pad:'#9f98c0',padE:'#655d83'},
   path:[[-40,520],[140,520],[140,120],[360,120],[360,300],[220,300],[220,460],[400,460],[400,690]],
-  spots:[[78,150],[220,150],[330,150],[78,250],[310,250],[78,380],[210,380],[340,380],[122,610],[300,610],[438,520]],
+  spots:[[78,150],[220,62],[330,62],[78,250],[310,250],[78,380],[438,380],[340,380],[122,610],[300,610],[438,520]],
   waves:[
    [['b',18,0.38]], [['f',20,0.28],['k',6,0.72]], [['s',10,0.68],['v',6,0.72]], [['a',6,0.85],['h',5,0.95]],
    [['r',8,0.88],['g',6,1.0]], [['z',2,5.5],['x',3,3.8]], [['t',12,0.78],['s',10,0.62]],
@@ -589,7 +589,7 @@ const LEVELS=[
    [['z',4,4],['x',5,2.8],['r',9,0.75],['h',6,0.8]], [['z',5,3.8],['x',5,2.8],['a',7,0.74],['v',12,0.52]],
    [['z',6,3.5],['x',6,2.6],['r',10,0.7],['k',12,0.58]],
   ]},
- {name:'Aurega Citadel',desc:'20 waves · the final cosmic clash',hint:'Best 3-star weapon: Prism + Mortar',stars:3,gold:350,lives:10,hpBase:3.0,hpRamp:.38,deco:'moon',
+ {name:'Aurega Citadel',desc:'20 waves · the final cosmic clash',hint:'Multiple Cannon placements at path intersections, Frost to slow long snake path',stars:3,gold:350,lives:10,hpBase:4.0,hpRamp:.44,deco:'moon',
   pal:{g1:'#1d1830',g2:'#120e20',pf:'#7c5a92',pe:'#4b325c',dash:'rgba(255,215,0,.75)',pad:'#e5c1f5',padE:'#805a9c'},
   path:[[240,-40],[240,100],[400,100],[400,540],[80,540],[80,200],[320,200],[320,420],[160,420],[160,300],[240,300],[240,690]],
   spots:[[120,260],[120,360],[200,360],[280,250],[360,150],[360,250],[360,350],[300,150],[120,480],[200,480],[280,480],[180,600],[300,600]],
@@ -605,7 +605,7 @@ const LEVELS=[
   ]},
 
  // WORLD 2 - Elemental Depths
- {name:'Magma Caverns',desc:'10 waves · boiling heat',hint:'Upgrade to Titan Cannons to stun giants',stars:2,gold:380,lives:12,hpBase:2.4,hpRamp:.20,deco:'ember',
+ {name:'Magma Caverns',desc:'10 waves · boiling heat',hint:'Musket snipes blinking Wraiths, Tesla chains Wraith+Shielded groups — Frost for slows',stars:2,gold:380,lives:12,hpBase:3.1,hpRamp:.23,deco:'ember',
   pal:{g1:'#5c2a18',g2:'#401c10',pf:'#7a3f28',pe:'#240b02',dash:'rgba(255,100,50,.85)',pad:'#9a563c',padE:'#5c2a18'},
   path:[[-40,300],[160,300],[160,100],[320,100],[320,500],[100,500],[100,690]],
   spots:[[80,200],[240,200],[400,200],[240,400],[400,400],[200,580],[80,360],[260,300],[380,300],[150,560],[40,580]],
@@ -614,7 +614,7 @@ const LEVELS=[
    [['u',3,2.0],['b',10,0.6]], [['d',6,0.9],['w',4,0.8]], [['t',8,1.2],['r',4,1.4]],
    [['u',4,1.8],['w',6,0.8],['d',5,1.0]], [['k',8,0.9],['a',4,1.2]], [['c',1,0],['w',8,0.6],['d',6,0.8]]
   ]},
- {name:'Crystal Depths',desc:'11 waves · glowing veins',hint:'Tesla chains zaps multiple hidden entities',stars:2,gold:400,lives:10,hpBase:2.6,hpRamp:.22,deco:'crystal',
+ {name:'Crystal Depths',desc:'11 waves · glowing veins',hint:'Tesla chains through shielded enemies, Musket picks off Necromancers before they summon',stars:2,gold:400,lives:10,hpBase:3.4,hpRamp:.25,deco:'crystal',
   pal:{g1:'#202c40',g2:'#141c2c',pf:'#465d7a',pe:'#0e1520',dash:'rgba(100,200,255,.8)',pad:'#5e7da3',padE:'#202c40'},
   path:[[240,-40],[240,160],[80,160],[80,400],[400,400],[400,690]],
   spots:[[150,80],[330,80],[160,260],[320,260],[160,480],[320,480],[240,220],[140,340],[300,340],[340,460],[450,520]],
@@ -624,7 +624,7 @@ const LEVELS=[
    [['h',4,1.4],['a',3,1.6]], [['u',5,1.3],['s',8,0.7]], [['c',1,0],['w',10,0.6],['d',8,0.8]],
    [['c',2,5],['u',4,1.5],['r',6,1.0]]
   ]},
- {name:'Neon Sanctuary',desc:'11 waves · energy core',hint:'Prism specializations melt shielded sentries',stars:2,gold:420,lives:10,hpBase:2.8,hpRamp:.24,deco:'storm',
+ {name:'Neon Sanctuary',desc:'11 waves · energy core',hint:'Prism laser melts Necromancers instantly, Mortar splash clears Colossus-spawned skeletons',stars:2,gold:420,lives:10,hpBase:3.6,hpRamp:.28,deco:'storm',
   pal:{g1:'#1a1630',g2:'#100d20',pf:'#544680',pe:'#080610',dash:'rgba(230,100,255,.85)',pad:'#7665ab',padE:'#1a1630'},
   path:[[-40,100],[400,100],[400,300],[80,300],[80,500],[400,500],[400,690]],
   spots:[[140,180],[260,180],[220,380],[340,380],[140,580],[260,580],[80,200],[320,240],[140,420],[260,420],[340,580]],
@@ -634,7 +634,7 @@ const LEVELS=[
    [['u',5,1.2],['t',8,0.9]], [['c',2,4.5],['w',8,0.5]], [['c',2,4],['u',4,1.4],['d',10,0.6]],
    [['z',1,0],['c',2,5],['w',10,0.5]]
   ]},
- {name:'Toxic Sewers',desc:'12 waves · waste disposal',hint:'Nuke Mortar melts groups with poison residue',stars:2,gold:440,lives:10,hpBase:3.0,hpRamp:.26,deco:'swamp',
+ {name:'Toxic Sewers',desc:'12 waves · waste disposal',hint:'Mortar siege bombs clustered shielded+wraith waves, Frost slows regen enemies',stars:2,gold:440,lives:10,hpBase:3.9,hpRamp:.30,deco:'swamp',
   pal:{g1:'#2e3b2b',g2:'#1e261c',pf:'#556b50',pe:'#0f140e',dash:'rgba(120,255,120,.8)',pad:'#75916f',padE:'#2e3b2b'},
   path:[[80,-40],[80,240],[400,240],[400,480],[80,480],[80,690]],
   spots:[[200,120],[320,120],[240,340],[240,580],[360,580],[140,180],[340,180],[140,300],[340,300],[140,420],[340,420]],
@@ -644,27 +644,27 @@ const LEVELS=[
    [['c',2,4],['u',4,1.3]], [['a',6,0.9],['k',8,0.8]], [['c',2,3.5],['w',10,0.5]],
    [['z',1,0],['c',2,4],['r',8,0.8]], [['z',2,6],['u',5,1.2],['d',10,0.6]]
   ]},
- {name:'Stormwind Crest',desc:'12 waves · high elevation',hint:'Frost slows the fast flying Void Wyrms',stars:3,gold:460,lives:10,hpBase:3.2,hpRamp:.28,deco:'pine',
+ {name:'Stormwind Crest',desc:'12 waves · high elevation',hint:'Frost at path turns slows fast Void Wyrms, Musket snipes flying targets at range',stars:3,gold:460,lives:10,hpBase:4.2,hpRamp:.32,deco:'pine',
   pal:{g1:'#2b3c40',g2:'#1a2628',pf:'#4f6a70',pe:'#0f1618',dash:'rgba(180,240,255,.8)',pad:'#6f9199',padE:'#2b3c40'},
   path:[[-40,500],[360,500],[360,120],[80,120],[80,690]],
-  spots:[[200,400],[200,220],[440,310],[440,190],[140,180],[280,180],[140,440],[280,440],[140,560],[280,560],[200,310],[340,260]],
+  spots:[[200,400],[200,220],[440,310],[440,190],[140,180],[280,180],[140,440],[280,440],[140,560],[280,560],[200,310],[320,300]],
   waves:[
    [['b',20,0.35]], [['y',4,1.2],['f',12,0.35]], [['w',8,0.7],['d',6,0.8]], [['u',4,1.4],['s',10,0.6]],
    [['y',6,1.0],['t',8,0.8]], [['r',8,0.8],['h',5,1.0]], [['c',2,4.5],['w',8,0.5]],
    [['u',5,1.1],['d',8,0.6]], [['c',2,3.5],['y',6,0.8]], [['z',1,0],['c',2,3.8]],
    [['z',2,5],['u',4,1.2],['y',8,0.7]], [['z',2,4.5],['c',3,4],['w',10,0.45]]
   ]},
- {name:'Ancient Vault',desc:'13 waves · ancestral treasure',hint:'Lava Spitters burn armored colossus targets',stars:3,gold:480,lives:10,hpBase:3.4,hpRamp:.30,deco:'forge',
+ {name:'Ancient Vault',desc:'13 waves · ancestral treasure',hint:'Dragon burn melts armor on tanks + knights, Mortar splash for Necromancer waves',stars:3,gold:480,lives:10,hpBase:3.4,hpRamp:.30,deco:'forge',
   pal:{g1:'#473b30',g2:'#2d251e',pf:'#7a6654',pe:'#1b1612',dash:'rgba(240,210,150,.85)',pad:'#a18873',padE:'#473b30'},
   path:[[400,-40],[400,200],[160,200],[160,440],[400,440],[400,690]],
-  spots:[[260,100],[260,320],[80,320],[260,540],[330,140],[220,260],[100,380],[340,380],[340,500],[220,500],[140,200],[360,420]],
+  spots:[[260,100],[260,320],[80,320],[260,540],[330,140],[220,260],[100,380],[340,380],[340,500],[220,500],[100,200],[448,420]],
   waves:[
    [['b',22,0.32]], [['f',18,0.3],['w',6,0.8]], [['s',14,0.6]], [['d',10,0.7],['y',5,1.0]],
    [['u',4,1.3],['t',10,0.8]], [['r',8,0.7],['a',5,1.0]], [['c',2,4],['w',10,0.5]],
    [['y',8,0.8],['d',10,0.6]], [['c',3,3.5],['u',4,1.2]], [['z',2,4.5],['s',12,0.5]],
    [['z',2,4],['y',10,0.6]], [['z',2,3.8],['c',3,3.5]], [['z',3,4.5],['u',6,1.0],['d',12,0.5]]
   ]},
- {name:'Deep Reactor',desc:'13 waves · unstable energy',hint:'Railguns pierce multiple enemies in straight corridors',stars:3,gold:500,lives:10,hpBase:3.6,hpRamp:.32,deco:'forge',
+ {name:'Deep Reactor',desc:'13 waves · unstable energy',hint:'Straight corridors — Musket pierces lines, Cannon splash at corners for colossus',stars:3,gold:500,lives:10,hpBase:4.7,hpRamp:.37,deco:'forge',
   pal:{g1:'#3b3b3c',g2:'#242424',pf:'#6a6a6a',pe:'#151515',dash:'rgba(220,220,220,.8)',pad:'#8e8e8e',padE:'#3b3b3c'},
   path:[[-40,80],[400,80],[400,540],[80,540],[80,690]],
   spots:[[200,180],[200,360],[280,440],[320,240],[120,140],[280,140],[120,300],[280,300],[120,460],[340,460],[200,440],[340,180]],
@@ -674,7 +674,7 @@ const LEVELS=[
    [['u',6,1.0],['a',6,0.9]], [['c',3,3.2],['y',8,0.6]], [['z',2,4.0],['r',10,0.6]],
    [['z',2,3.5],['u',5,1.1],['d',12,0.5]], [['z',3,4.0],['c',3,3.2]], [['z',3,3.5],['c',4,3],['w',12,0.4]]
   ]},
- {name:'Cobalt Trench',desc:'14 waves · abyssal darkness',hint:'Permafrost can freeze solid the fast flying Wyrms',stars:3,gold:520,lives:10,hpBase:3.8,hpRamp:.34,deco:'swamp',
+ {name:'Cobalt Trench',desc:'14 waves · abyssal darkness',hint:'Permafrost spec freezes Wyrms solid, Dragon burn + Cannon splash for armored pushes',stars:3,gold:520,lives:10,hpBase:5.0,hpRamp:.40,deco:'swamp',
   pal:{g1:'#1c3240',g2:'#10202c',pf:'#3a5d75',pe:'#09121a',dash:'rgba(100,210,255,.8)',pad:'#527e9c',padE:'#1c3240'},
   path:[[240,-40],[240,300],[400,300],[400,500],[80,500],[80,690]],
   spots:[[140,180],[340,180],[320,400],[200,400],[200,580],[180,100],[300,100],[140,360],[340,460],[140,560],[300,560]],
@@ -684,7 +684,7 @@ const LEVELS=[
    [['y',12,0.6],['d',12,0.5]], [['c',3,3.0],['u',5,1.0]], [['z',2,3.5],['y',10,0.5]],
    [['z',2,3.2],['u',6,0.9]], [['z',3,3.8],['c',3,3.0]], [['z',3,3.2],['c',4,2.8]], [['z',4,4.0],['u',6,0.8],['d',14,0.4]]
   ]},
- {name:'Whispering Ruins',desc:'14 waves · overgrown stones',hint:'Titan Cannons stun large colossus and bosses',stars:3,gold:550,lives:10,hpBase:4.0,hpRamp:.36,deco:'tree',
+ {name:'Whispering Ruins',desc:'14 waves · overgrown stones',hint:'Titan Cannon spec stuns Colossus for 1.2s, Mortar nukes boss-warlord waves',stars:3,gold:550,lives:10,hpBase:5.2,hpRamp:.42,deco:'tree',
   pal:{g1:'#33402e',g2:'#20291d',pf:'#5d7355',pe:'#10150e',dash:'rgba(170,220,150,.85)',pad:'#819e76',padE:'#33402e'},
   path:[[-40,400],[400,400],[400,180],[100,180],[100,690]],
   spots:[[220,280],[220,100],[220,500],[320,500],[140,100],[300,100],[160,320],[320,320],[160,460],[320,460],[140,220],[360,220]],
@@ -694,10 +694,10 @@ const LEVELS=[
    [['u',7,0.8],['a',8,0.7]], [['c',4,2.8],['y',10,0.5]], [['z',3,3.5],['r',12,0.5]],
    [['z',3,3.0],['u',6,0.8]], [['z',4,3.2],['c',4,2.6]], [['z',4,2.8],['c',5,2.4]], [['z',5,3.5],['u',8,0.7],['d',16,0.35]]
   ]},
- {name:'Core Singularity',desc:'15 waves · collapse point',hint:'Nuke Mortars and EMP Surge deal with massive swarms',stars:3,gold:600,lives:10,hpBase:4.2,hpRamp:.38,deco:'forge',
+ {name:'Core Singularity',desc:'15 waves · collapse point',hint:'Nuke Mortar spec radiation clears waves after Colossus dies, Dragon burn for sustained DPS',stars:3,gold:600,lives:10,hpBase:4.2,hpRamp:.38,deco:'forge',
   pal:{g1:'#291830',g2:'#190e1f',pf:'#543860',pe:'#0e0510',dash:'rgba(220,150,255,.85)',pad:'#7b5b8c',padE:'#291830'},
   path:[[240,-40],[240,180],[380,180],[380,460],[100,460],[100,690]],
-  spots:[[150,80],[310,80],[240,320],[240,560],[180,120],[300,120],[180,380],[300,380],[180,520],[300,520],[240,200],[80,320]],
+  spots:[[150,80],[310,80],[240,320],[240,560],[180,120],[300,120],[180,380],[300,380],[180,520],[300,520],[448,200],[42,320]],
   waves:[
    [['b',30,0.22]], [['f',24,0.2],['w',10,0.5]], [['s',18,0.45]], [['d',16,0.45],['y',12,0.55]],
    [['u',7,0.8],['t',16,0.5]], [['r',14,0.45],['h',8,0.7]], [['c',4,2.6],['w',14,0.35]],
@@ -707,7 +707,7 @@ const LEVELS=[
   ]},
 
  // WORLD 3 - Cosmic Void
- {name:'Cosmic Void',desc:'12 waves · deep space',hint:'Quantum Melters burn through huge cosmic targets',stars:3,gold:650,lives:10,hpBase:4.5,hpRamp:.40,deco:'moon',
+ {name:'Cosmic Void',desc:'12 waves · deep space',hint:'Tesla chains + Mortar splash for Void Wyrm swarms, Musket snipes Necromancers early',stars:3,gold:650,lives:10,hpBase:5.9,hpRamp:.46,deco:'moon',
   pal:{g1:'#121424',g2:'#080912',pf:'#3a3f61',pe:'#030408',dash:'rgba(255,255,255,.8)',pad:'#535985',padE:'#121424'},
   path:[[-40,240],[200,240],[200,420],[400,420],[400,690]],
   spots:[[100,140],[300,140],[100,340],[300,340],[300,520],[120,200],[280,200],[120,480],[280,480],[340,600],[460,600]],
@@ -717,67 +717,67 @@ const LEVELS=[
    [['u',6,1.0],['a',6,0.9]], [['c',3,3.5],['y',8,0.6]], [['z',2,4.0],['r',10,0.6]],
    [['z',3,3.5],['c',3,3.0]], [['z',4,3.0],['u',6,0.8],['d',12,0.5]]
   ]},
- {name:'Starlight Path',desc:'12 waves · astral roadway',hint:'Overcharge Tesla chains speed-buffed runners',stars:3,gold:700,lives:10,hpBase:4.8,hpRamp:.42,deco:'moon',
+ {name:'Starlight Path',desc:'12 waves · astral roadway',hint:'Overcharge Tesla chains 8 targets through wyrm swarms, Frost slows everything for focus fire',stars:3,gold:700,lives:10,hpBase:4.8,hpRamp:.42,deco:'moon',
   pal:{g1:'#161b33',g2:'#0b0d1a',pf:'#3c4778',pe:'#04050a',dash:'rgba(200,220,255,.85)',pad:'#5767a6',padE:'#161b33'},
   path:[[240,-40],[240,200],[100,200],[100,480],[380,480],[380,690]],
-  spots:[[160,100],[320,100],[240,340],[240,580],[180,140],[300,140],[160,260],[320,260],[160,420],[320,420],[240,180],[240,500]],
+  spots:[[160,100],[320,100],[240,340],[240,580],[180,140],[300,140],[160,260],[320,260],[160,420],[320,420],[340,140],[160,530]],
   waves:[
    [['b',30,0.25]], [['f',20,0.22],['w',8,0.55]], [['s',15,0.45]], [['d',12,0.5],['y',8,0.7]],
    [['u',6,1.0],['t',12,0.6]], [['r',10,0.6],['h',6,0.8]], [['c',3,3.2],['w',12,0.4]],
    [['y',12,0.6],['d',12,0.5]], [['c',3,3.0],['u',5,1.0]], [['z',3,3.5],['y',10,0.5]],
    [['z',3,3.2],['c',3,2.8]], [['z',4,3.0],['u',8,0.7],['d',14,0.45]]
   ]},
- {name:'Nebula Rift',desc:'13 waves · gas cloud pass',hint:'Refracting Prisms split laser damage across clusters',stars:3,gold:750,lives:10,hpBase:5.2,hpRamp:.45,deco:'crystal',
+ {name:'Nebula Rift',desc:'13 waves · gas cloud pass',hint:'Refractor Prism beam splits to 5 targets in tight corridors, Cluster Mortar for open areas',stars:3,gold:750,lives:10,hpBase:5.2,hpRamp:.45,deco:'crystal',
   pal:{g1:'#1e132c',g2:'#0f0917',pf:'#4a3366',pe:'#040206',dash:'rgba(230,170,255,.85)',pad:'#6b4f91',padE:'#1e132c'},
   path:[[-40,320],[400,320],[400,140],[120,140],[120,690]],
-  spots:[[240,220],[240,60],[240,420],[320,420],[160,100],[320,100],[160,260],[320,260],[160,520],[320,520],[80,340],[360,340]],
+  spots:[[240,220],[240,60],[240,420],[320,420],[160,100],[320,100],[160,260],[320,260],[160,520],[320,520],[42,280],[448,280]],
   waves:[
    [['b',32,0.22]], [['w',12,0.5],['f',22,0.2]], [['d',14,0.45],['y',10,0.6]], [['u',6,0.9],['s',14,0.4]],
    [['t',14,0.5],['r',12,0.45]], [['c',3,2.8],['w',12,0.35]], [['y',14,0.5],['d',12,0.4]],
    [['u',7,0.8],['a',8,0.7]], [['c',4,2.6],['y',10,0.45]], [['z',3,3.2],['r',12,0.45]],
    [['z',3,2.8],['u',6,0.7]], [['z',4,3.0],['c',4,2.4]], [['z',4,2.5],['c',5,2.2],['d',16,0.4]]
   ]},
- {name:'Supernova Core',desc:'13 waves · extreme fusion',hint:'Lava Spitters inflict continuous burn on slow targets',stars:3,gold:800,lives:10,hpBase:5.6,hpRamp:.48,deco:'ember',
+ {name:'Supernova Core',desc:'13 waves · extreme fusion',hint:'Lava Spitter leaves magma pools on wyrm paths, Nuke Mortar + Frost combo for colossus waves',stars:3,gold:800,lives:10,hpBase:5.6,hpRamp:.48,deco:'ember',
   pal:{g1:'#3a1313',g2:'#220808',pf:'#783030',pe:'#0c0202',dash:'rgba(255,130,130,.85)',pad:'#a14848',padE:'#3a1313'},
   path:[[240,-40],[240,140],[80,140],[80,460],[400,460],[400,690]],
-  spots:[[160,60],[320,60],[240,300],[240,560],[140,200],[340,200],[140,380],[340,380],[140,520],[340,520],[80,300],[400,300]],
+  spots:[[160,60],[320,60],[240,300],[240,560],[140,200],[340,200],[140,380],[340,380],[140,520],[340,520],[42,300],[400,300]],
   waves:[
    [['b',34,0.2]], [['f',24,0.18],['w',12,0.45]], [['s',18,0.4]], [['d',16,0.4],['y',12,0.5]],
    [['u',7,0.8],['t',16,0.45]], [['r',14,0.4],['h',8,0.6]], [['c',4,2.4],['w',14,0.3]],
    [['y',16,0.45],['d',14,0.35]], [['c',4,2.2],['u',7,0.6]], [['z',3,2.8],['y',12,0.4]],
    [['z',4,2.5],['c',4,2.2]], [['z',4,2.2],['c',5,2.0]], [['z',5,2.8],['u',9,0.5],['d',18,0.3]]
   ]},
- {name:'Black Hole Horizon',desc:'14 waves · gravity well',hint:'Titan Cannons stun massive cosmic colossi',stars:3,gold:850,lives:10,hpBase:6.0,hpRamp:.50,deco:'moon',
+ {name:'Black Hole Horizon',desc:'14 waves · gravity well',hint:'Titan Cannon stuns colossus, Aurega Zuka splash wipes shielded+dodge swarms',stars:3,gold:850,lives:10,hpBase:7.8,hpRamp:.58,deco:'moon',
   pal:{g1:'#0a0a0f',g2:'#020204',pf:'#242436',pe:'#000000',dash:'rgba(180,180,250,.7)',pad:'#3c3c52',padE:'#0a0a0f'},
   path:[[-40,120],[360,120],[360,420],[80,420],[80,690]],
-  spots:[[180,220],[180,320],[430,270],[200,520],[120,180],[280,180],[120,360],[280,360],[120,480],[280,480],[200,120],[200,600]],
+  spots:[[180,220],[180,320],[430,270],[200,520],[120,180],[280,180],[120,360],[280,360],[120,480],[280,480],[200,62],[200,600]],
   waves:[
    [['b',36,0.18]], [['w',14,0.4],['f',26,0.16]], [['d',18,0.36],['y',14,0.45]], [['u',8,0.7],['s',20,0.35]],
    [['t',18,0.4],['r',16,0.35]], [['c',4,2.2],['w',16,0.28]], [['y',18,0.4],['d',16,0.3]],
    [['u',8,0.6],['a',10,0.6]], [['c',5,2.0],['y',12,0.4]], [['z',4,2.5],['r',14,0.38]],
    [['z',4,2.2],['u',8,0.5]], [['z',5,2.4],['c',5,2.0]], [['z',5,2.0],['c',6,1.8]], [['z',6,2.5],['u',10,0.5],['d',20,0.25]]
   ]},
- {name:'Pulsar Ridge',desc:'14 waves · stellar beacon',hint:'EMP Surge removes shields from shielded pulsar sentries',stars:3,gold:900,lives:10,hpBase:6.4,hpRamp:.52,deco:'storm',
+ {name:'Pulsar Ridge',desc:'14 waves · stellar beacon',hint:'EMP Surge purges haste from runners, Blizzard Core aura slows entire path sections',stars:3,gold:900,lives:10,hpBase:6.4,hpRamp:.52,deco:'storm',
   pal:{g1:'#122030',g2:'#08101a',pf:'#2c4a6b',pe:'#020406',dash:'rgba(100,220,255,.8)',pad:'#446e9c',padE:'#122030'},
   path:[[240,-40],[240,300],[80,300],[80,480],[400,480],[400,690]],
-  spots:[[140,180],[340,180],[240,400],[240,580],[160,240],[320,240],[160,360],[320,360],[160,540],[320,540],[80,300],[400,300]],
+  spots:[[140,180],[340,180],[240,400],[240,580],[160,240],[320,240],[160,360],[320,360],[160,540],[320,540],[42,300],[400,300]],
   waves:[
    [['b',38,0.16]], [['f',28,0.14],['w',14,0.38]], [['s',22,0.32]], [['d',20,0.32],['y',16,0.4]],
    [['u',9,0.6],['t',20,0.36]], [['r',18,0.32],['h',10,0.5]], [['c',5,1.8],['w',18,0.26]],
    [['y',20,0.36],['d',18,0.28]], [['c',5,1.7],['u',9,0.45]], [['z',4,2.2],['y',14,0.36]],
    [['z',4,2.0],['u',9,0.4]], [['z',5,2.0],['c',5,1.8]], [['z',5,1.8],['c',6,1.6]], [['z',6,2.2],['u',11,0.4],['d',22,0.22]]
   ]},
- {name:'Dark Matter Field',desc:'14 waves · heavy particles',hint:'Railguns ignore dark matter armor entirely',stars:3,gold:950,lives:10,hpBase:6.8,hpRamp:.55,deco:'crystal',
+ {name:'Dark Matter Field',desc:'14 waves · heavy particles',hint:'Hyper-Railgun pierces straight path lines through everything, Cluster Mortar for corners',stars:3,gold:950,lives:10,hpBase:6.8,hpRamp:.55,deco:'crystal',
   pal:{g1:'#1d152b',g2:'#0e0a17',pf:'#483669',pe:'#040206',dash:'rgba(200,160,255,.8)',pad:'#685294',padE:'#1d152b'},
   path:[[-40,520],[400,520],[400,240],[80,240],[80,690]],
-  spots:[[240,380],[240,140],[440,380],[440,140],[160,180],[320,180],[160,300],[320,300],[160,440],[320,440],[80,300],[400,500]],
+  spots:[[240,380],[240,140],[440,380],[440,140],[160,180],[320,180],[160,300],[320,300],[160,440],[320,440],[42,300],[448,500]],
   waves:[
    [['b',40,0.15]], [['w',16,0.35],['f',30,0.12]], [['d',22,0.3],['y',18,0.35]], [['u',10,0.5],['s',24,0.3]],
    [['t',22,0.32],['r',20,0.3]], [['c',5,1.6],['w',20,0.24]], [['y',22,0.32],['d',20,0.26]],
    [['u',10,0.4],['a',12,0.5]], [['c',6,1.5],['y',14,0.32]], [['z',5,1.8],['r',16,0.35]],
    [['z',5,1.6],['u',10,0.35]], [['z',6,1.8],['c',6,1.6]], [['z',6,1.5],['c',7,1.4]], [['z',7,1.8],['u',12,0.35],['d',24,0.2]]
   ]},
- {name:'Celestial Gate',desc:'14 waves · galactic entry',hint:'Blizzard slow and damage keeps gate keys safe',stars:3,gold:1000,lives:10,hpBase:7.2,hpRamp:.58,deco:'storm',
+ {name:'Celestial Gate',desc:'14 waves · galactic entry',hint:'Blizzard Core aura at gate entrance slows all entry, Aurega Zuka mops up slowed targets',stars:3,gold:1000,lives:10,hpBase:7.2,hpRamp:.58,deco:'storm',
   pal:{g1:'#1e2c3a',g2:'#0f161f',pf:'#485f78',pe:'#040608',dash:'rgba(180,220,255,.85)',pad:'#6884a3',padE:'#1e2c3a'},
   path:[[120,-40],[120,260],[360,260],[360,480],[120,480],[120,690]],
   spots:[[240,140],[240,360],[240,580],[420,360],[180,200],[300,200],[180,420],[300,420],[180,540],[300,540],[420,140],[80,360]],
@@ -787,7 +787,7 @@ const LEVELS=[
    [['y',24,0.28],['d',22,0.24]], [['c',6,1.3],['u',11,0.4]], [['z',5,1.6],['y',16,0.3]],
    [['z',5,1.4],['u',11,0.3]], [['z',6,1.6],['c',6,1.4]], [['z',6,1.3],['c',7,1.2]], [['z',7,1.6],['u',13,0.3],['d',26,0.18]]
   ]},
- {name:'Ether Sanctum',desc:'14 waves · temple of spirits',hint:'Cluster Mortar shrapnels damage phantom phalanxes',stars:3,gold:1100,lives:10,hpBase:7.6,hpRamp:.60,deco:'moon',
+ {name:'Ether Sanctum',desc:'14 waves · temple of spirits',hint:'Cluster Mortar shreds phantom swarms at path junctions, Dragon burn for sustained colossus DPS',stars:3,gold:1100,lives:10,hpBase:7.6,hpRamp:.60,deco:'moon',
   pal:{g1:'#2b1c3a',g2:'#150d1f',pf:'#5c3f78',pe:'#040206',dash:'rgba(220,180,255,.85)',pad:'#845fa6',padE:'#2b1c3a'},
   path:[[-40,180],[400,180],[400,460],[100,460],[100,690]],
   spots:[[200,280],[200,80],[200,560],[320,560],[140,120],[320,120],[140,340],[320,340],[140,500],[320,500],[80,280],[360,280]],
@@ -797,7 +797,7 @@ const LEVELS=[
    [['u',12,0.35],['a',14,0.4]], [['c',7,1.2],['y',16,0.28]], [['z',6,1.4],['r',18,0.3]],
    [['z',6,1.2],['u',12,0.3]], [['z',7,1.4],['c',7,1.2]], [['z',7,1.2],['c',8,1.0]], [['z',8,1.4],['u',14,0.25],['d',28,0.15]]
   ]},
- {name:'The Keep of Eternity',desc:'15 waves · infinite conflict',hint:'Ultimate evolved weapons are needed to survive eternity',stars:3,gold:1200,lives:10,hpBase:8.0,hpRamp:.65,deco:'moon',
+ {name:'The Keep of Eternity',desc:'15 waves · infinite conflict',hint:'Max everything — multiple Aurega Zukas at path turns + Nuke Mortars for final zerg rush',stars:3,gold:1200,lives:10,hpBase:8.0,hpRamp:.65,deco:'moon',
   pal:{g1:'#120e20',g2:'#080610',pf:'#46366b',pe:'#020104',dash:'rgba(255,215,0,.8)',pad:'#685496',padE:'#120e20'},
   path:[[240,-40],[240,100],[400,100],[400,540],[80,540],[80,200],[320,200],[320,420],[160,420],[160,300],[240,300],[240,690]],
   spots:[[120,260],[120,360],[200,360],[280,250],[360,150],[360,250],[360,350],[300,150],[120,480],[200,480],[280,480],[180,600],[300,600]],
@@ -1432,7 +1432,7 @@ const G={
     this.particles=this.particles.filter(p=>p.t<p.max && p.x>-20 && p.x<LW+20 && p.y>-20 && p.y<LH+20);
 
     if(this.inWave&&this.qi>=this.spawnQ.length&&this.enemies.length===0){
-      const done=this.waveIdx+1, bonus=Math.round(15+3*done+this.li*4);
+      const done=this.waveIdx+1, bonus=Math.round(20+4*done+this.li*6);
       this.gold+=bonus; this.inWave=false; this.waveIdx++;
       if(this.waveIdx>=this.level.waves.length){this.end(true)}
       else{
